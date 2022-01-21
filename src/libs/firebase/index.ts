@@ -1,4 +1,5 @@
-import firebase from 'firebase/app'
+import { FirebaseApp, getApp, getApps, initializeApp } from 'firebase/app'
+import { Auth, getAuth } from 'firebase/auth'
 
 const config = {
   apiKey: process.env.FIREBASE_KEY,
@@ -9,7 +10,14 @@ const config = {
   messagingSenderId: process.env.FIREBASE_SENDER_ID,
   appId: process.env.FIREBASE_APPID,
 }
+
+let firebaseApp: FirebaseApp
+let firebaseAuth: Auth
+
 // initializeを複数回走らせない
-if (firebase.getApps.length === 0) {
-  firebase.initializeApp(config)
+if (typeof window !== 'undefined' && !getApps().length) {
+  firebaseApp = initializeApp(config)
+  firebaseAuth = getAuth()
 }
+
+export { firebaseApp, firebaseAuth }
