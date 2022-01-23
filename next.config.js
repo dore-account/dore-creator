@@ -8,5 +8,9 @@ module.exports = {
     FIREBASE_STORAGE_BUCKET: process.env.FIREBASE_STORAGE_BUCKET,
     FIREBASE_SENDER_ID: process.env.FIREBASE_SENDER_ID,
     FIREBASE_APPID: process.env.FIREBASE_APPID
-  }
+  },
+  i18n: {
+    locales: ["en", "ja"],
+    defaultLocale: "ja",
+  },
 }
