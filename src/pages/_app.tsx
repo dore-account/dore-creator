@@ -4,6 +4,16 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
 import { ChakraProvider } from '@chakra-ui/react'
 import type { AppProps } from 'next/app'
 import { AuthProvider } from 'src/hooks/auth/useAuthState'
+import { NextPage } from 'next'
+import { ReactElement, ReactNode } from 'react'
+
+type NextPageWithLayout = NextPage & {
+  getLayout?: (page: ReactElement) => ReactNode
+}
+
+type AppPropsWithLayout = AppProps & {
+  Component: NextPageWithLayout
+}
 
 const cache = new InMemoryCache()
 const client = new ApolloClient({
@@ -11,12 +21,16 @@ const client = new ApolloClient({
   cache,
 })
 
-export default function MyApp({ Component, pageProps }: AppProps) {
+export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
+  const getLayout = Component.getLayout ?? ((page) => page)
+
   return (
     <ApolloProvider client={client}>
       <ChakraProvider>
         <AuthProvider>
-          <Component {...pageProps} />
+          {
+            getLayout(<Component {...pageProps} />)
+          }
         </AuthProvider>
       </ChakraProvider>
     </ApolloProvider>
