@@ -1,9 +1,10 @@
-import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ReactElement } from 'react'
+import { SignOutButton } from 'src/components/common/signOutButton'
 import { Layout } from 'src/components/layout/layout'
+import { useAuthContext } from 'src/hooks/auth/useAuthState'
 import styles from '../styles/Home.module.css'
 
 export default function Home() {
@@ -37,7 +38,6 @@ export default function Home() {
               <p>Learn about Next.js in an interactive course with quizzes!</p>
             </a>
           </Link>
-
         </div>
       </main>
 
@@ -57,12 +57,15 @@ export default function Home() {
   )
 }
 
-
 Home.getLayout = function getLayout(page: ReactElement) {
   return (
-    <Layout headerProps={{
-      title: 'home'
-    }}>
+    <Layout
+      headerProps={{
+        title: 'home',
+        rightComponent: <SignOutButton />,
+        leftComponent: <></>,
+      }}
+    >
       {page}
     </Layout>
   )
