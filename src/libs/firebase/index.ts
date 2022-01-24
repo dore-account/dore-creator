@@ -1,5 +1,6 @@
 import { FirebaseApp, getApp, getApps, initializeApp } from 'firebase/app'
-import { Auth, getAuth } from 'firebase/auth'
+import { getAuth } from 'firebase/auth'
+import firebase from 'firebase/compat/app'
 
 const config = {
   apiKey: process.env.FIREBASE_KEY,
@@ -11,13 +12,16 @@ const config = {
   appId: process.env.FIREBASE_APPID,
 }
 
-let firebaseApp: FirebaseApp
-let firebaseAuth: Auth
+const getFirebaseApp = (): FirebaseApp | undefined => {
+  if (typeof window === 'undefined') return
 
-// initializeを複数回走らせない
-if (typeof window !== 'undefined' && !getApps().length) {
-  firebaseApp = initializeApp(config)
-  firebaseAuth = getAuth()
+  if (!getApps().length) {
+    return initializeApp(config)
+  } else {
+    return getApp()
+  }
 }
 
-export { firebaseApp, firebaseAuth }
+const firebaseAuth = getAuth(getFirebaseApp())
+
+export { getFirebaseApp, firebaseAuth, firebase }
