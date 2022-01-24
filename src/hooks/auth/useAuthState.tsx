@@ -1,11 +1,11 @@
 import { onAuthStateChanged, User } from 'firebase/auth'
-import { createContext, useContext, useEffect, useState } from 'react';
-import { firebaseAuth } from 'src/libs/firebase';
+import { createContext, useContext, useEffect, useState } from 'react'
+import { firebaseAuth } from 'src/libs/firebase'
 
 export type AuthState = {
   isSignedIn: boolean
   isLoading: boolean
-  user: User | null 
+  user: User | null
 }
 
 const INITIAL_AUTH_STATE = {
@@ -14,14 +14,14 @@ const INITIAL_AUTH_STATE = {
   user: null,
 }
 
-const AuthContext = createContext<AuthState>({} as AuthState);
+const AuthContext = createContext<AuthState>({} as AuthState)
 
 export const useAuthContext = () => {
-  return useContext(AuthContext);
-};
+  return useContext(AuthContext)
+}
 
 const useAuthState = () => {
-  const [authState, setAuthState] = useState<AuthState>(INITIAL_AUTH_STATE);
+  const [authState, setAuthState] = useState<AuthState>(INITIAL_AUTH_STATE)
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(firebaseAuth, (user) => {
@@ -34,17 +34,16 @@ const useAuthState = () => {
       } else {
         setAuthState({ ...INITIAL_AUTH_STATE, isLoading: false })
       }
-  })
+    })
 
-  return () => unsubscribe();
+    return () => unsubscribe()
   }, [])
-  return authState;
+  return authState
 }
 
 export const AuthProvider: React.FC = ({ children }) => {
-  const authContext = useAuthState();
+  const authContext = useAuthState()
   return (
     <AuthContext.Provider value={authContext}>{children}</AuthContext.Provider>
   )
-};
-
+}
