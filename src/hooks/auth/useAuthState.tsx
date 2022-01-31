@@ -1,5 +1,7 @@
 import { onAuthStateChanged, User } from 'firebase/auth'
+import { useRouter } from 'next/router'
 import { createContext, useContext, useEffect, useState } from 'react'
+import { useCookies } from 'react-cookie'
 import { firebaseAuth } from 'src/libs/firebase'
 
 export type AuthState = {
@@ -22,6 +24,8 @@ export const useAuthContext = () => {
 
 const useAuthState = () => {
   const [authState, setAuthState] = useState<AuthState>(INITIAL_AUTH_STATE)
+  const [cookies, setCookie, removeCookie] = useCookies(['ID_TOKEN']);
+  const router = useRouter()
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(firebaseAuth, (user) => {
@@ -38,6 +42,21 @@ const useAuthState = () => {
 
     return () => unsubscribe()
   }, [])
+
+  useEffect(() => {
+    const currentPath = router.pathname
+    const isPublicPath = currentPath.startsWith('/login')
+    const user = authState.user
+    const loading = authState.isLoading
+    console.log(currentPath)
+
+    if (!loading && !user && !isPublicPath) {
+      console.log('user:', user)
+      console.log('loading:', loading)
+      router.push('/login', currentPath)
+    }
+  }, [authState.isLoading, authState.user, router])
+
   return authState
 }
 

@@ -4,14 +4,14 @@ import Router from 'next/router'
 import React from 'react'
 import { useAuthContext } from 'src/hooks/auth/useAuthState'
 
-export const SignOutButton: React.FC = () => {
+export const AuthButton: React.FC = () => {
   const { isSignedIn } = useAuthContext()
   return (
     <>
       {isSignedIn ? (
-        <Button onClick={() => signOut(getAuth())}>Sign-out</Button>
+        <Button onClick={() => signOut(getAuth())}>ログアウト</Button>
       ) : (
-        <Button onClick={() => Router.push('/signin')}>Sign-in</Button>
+        <Button onClick={() => Router.push('/login')}>ログイン</Button>
       )}
     </>
   )

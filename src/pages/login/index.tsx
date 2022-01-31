@@ -1,7 +1,7 @@
 import { Center, Heading, VStack } from '@chakra-ui/react'
 import React, { ReactElement } from 'react'
 import { LoginForm } from 'src/components/pages/login/Form'
-import { SignOutButton } from 'src/components/common/signOutButton'
+import { AuthButton } from 'src/components/common/authButton'
 import { Layout } from 'src/components/layout/layout'
 
 export default function LoginPage() {
@@ -20,7 +20,7 @@ LoginPage.getLayout = function getLayout(page: ReactElement) {
     <Layout
       headerProps={{
         title: 'home',
-        rightComponent: <SignOutButton />,
+        rightComponent: <AuthButton />,
         leftComponent: <></>,
       }}
     >
