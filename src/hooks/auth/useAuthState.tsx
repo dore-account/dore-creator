@@ -1,7 +1,6 @@
-import { onAuthStateChanged, User } from 'firebase/auth'
+import { getIdToken, onAuthStateChanged, User } from 'firebase/auth'
 import { useRouter } from 'next/router'
 import { createContext, useContext, useEffect, useState } from 'react'
-import { useCookies } from 'react-cookie'
 import { firebaseAuth } from 'src/libs/firebase'
 
 export type AuthState = {
@@ -24,7 +23,6 @@ export const useAuthContext = () => {
 
 const useAuthState = () => {
   const [authState, setAuthState] = useState<AuthState>(INITIAL_AUTH_STATE)
-  const [cookies, setCookie, removeCookie] = useCookies(['ID_TOKEN']);
   const router = useRouter()
 
   useEffect(() => {
@@ -41,6 +39,26 @@ const useAuthState = () => {
     })
 
     return () => unsubscribe()
+  }, [])
+
+  useEffect(() => {
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker
+          .register('./sw.js', { scope: '/' })
+          .then(
+            (registration) => {
+              console.log(
+                'Service Worker registration successful with scope: ',
+                registration.scope
+              )
+            },
+            (err) => {
+              console.log('Service Worker registration failed: ', err)
+            }
+          )
+      })
+    }
   }, [])
 
   useEffect(() => {

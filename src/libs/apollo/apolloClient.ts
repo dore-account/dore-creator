@@ -12,7 +12,9 @@ function createApolloClient(initialState: NormalizedCacheObject) {
   });
 
   const authLink = setContext((_, { headers }) => {
-    const token = '';
+    const token = headers.authorization || ''; 
+    console.log(token);
+    
     return {
       headers: {
         ...headers,

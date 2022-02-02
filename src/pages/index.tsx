@@ -1,11 +1,17 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import { GetServerSidePropsContext } from 'next/types'
 import { ReactElement } from 'react'
 import { AuthButton } from 'src/components/common/authButton'
 import { Layout } from 'src/components/layout/layout'
 import styles from '../styles/Home.module.css'
 
-export default function Home() {
+interface Props {
+  stars?: string
+}
+
+function Home({ stars }: Props) {
+  console.log(stars)
   return (
     <div className={styles.container}>
       <main className={styles.main}>
@@ -19,10 +25,12 @@ export default function Home() {
         </p>
 
         <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
+          <Link href="/profile" >
+            <a className={styles.card}>
+              <h2>Documentation &rarr;</h2>
+              <p>Find in-depth information about Next.js features and API.</p>
+            </a>
+          </Link>
 
           <Link href="/login">
             <a className={styles.card}>
@@ -32,7 +40,6 @@ export default function Home() {
           </Link>
         </div>
       </main>
-
     </div>
   )
 }
@@ -50,3 +57,12 @@ Home.getLayout = function getLayout(page: ReactElement) {
     </Layout>
   )
 }
+
+Home.getInitialProps = async (ctx: GetServerSidePropsContext) => {
+  console.log('----------------------')
+  console.log(ctx.req.headers.authorization)
+  console.log(process.env.NODE_ENV === 'production')
+  return { stars: ctx.req.headers.authorization }
+}
+
+export default Home
