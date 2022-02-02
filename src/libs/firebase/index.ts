@@ -1,8 +1,10 @@
-import { FirebaseApp, getApp, getApps, initializeApp } from 'firebase/app'
-import { getAuth } from 'firebase/auth'
+// import { FirebaseApp, getApp, getApps, initializeApp } from 'firebase/app'
+// import { getAuth } from 'firebase/auth'
+// import 'firebase/auth'
 import firebase from 'firebase/compat/app'
+import 'firebase/compat/auth'
 
-const config = {
+export const config = {
   apiKey: process.env.FIREBASE_KEY,
   authDomain: process.env.FIREBASE_DOMAIN,
   databeseURL: process.env.FIREBASE_DATABASE,
@@ -12,16 +14,19 @@ const config = {
   appId: process.env.FIREBASE_APPID,
 }
 
-const getFirebaseApp = (): FirebaseApp | undefined => {
+// const getFirebaseApp = (): FirebaseApp | undefined => {
+const getFirebaseApp = (): firebase.app.App | undefined => {
   if (typeof window === 'undefined') return
 
-  if (!getApps().length) {
-    return initializeApp(config)
+  if (!firebase.apps.length) {
+    console.log('initialize');
+    return firebase.initializeApp(config)
   } else {
-    return getApp()
+    console.log('not initialize');
+    return firebase.app()
   }
 }
 
-const firebaseAuth = getAuth(getFirebaseApp())
+const firebaseAuth = firebase.auth(getFirebaseApp())
 
 export { getFirebaseApp, firebaseAuth, firebase }
