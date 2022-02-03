@@ -1,19 +1,30 @@
 import { initializeApp } from 'firebase/app'
 import { getAuth, onAuthStateChanged, getIdToken } from 'firebase/auth'
-
+import firebase from 'firebase/compat/app';
+import 'firebase/auth';
 
 const CACHE_NAME = 'cache-v1'
 
+
 // Initialize the Firebase app in the service worker script.
 initializeApp({
-  apiKey: process.env.NEXT_PUBLIC_API_KEY,
-  authDomain: process.env.NEXT_PUBLIC_AUTH_DOMAIN,
-  projectId: process.env.NEXT_PUBLIC_PROJECT_ID,
-  storageBucket: process.env.NEXT_PUBLIC_STORAGE_BUCKET,
-  messagingSenderId: process.env.NEXT_PUBLIC_MESSAGING_SENDER_ID,
-  appId: process.env.NEXT_PUBLIC_APP_ID,
-  measurementId: process.env.NEXT_PUBLIC_MEASUREMENT_ID,
+  apiKey: process.env.FIREBASE_KEY,
+  authDomain: process.env.FIREBASE_DOMAIN,
+  projectId: process.env.FIREBASE_PROJECT_ID,
+  storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.FIREBASE_SENDER_ID,
+  appId: process.env.FIREBASE_APP_ID,
+  measurementId: process.env.FIREBASE_MEASUREMENT_ID,
 })
+
+
+firebase.auth().onAuthStateChanged((user) => {
+  if (user) {
+    console.log('user signed in', user.uid);
+  } else {
+    console.log('user signed out');
+  }
+});
 
 const auth = getAuth()
 
@@ -45,6 +56,10 @@ const getOriginFromUrl = (url: any) => {
   const host = pathArray[2]
   return protocol + '//' + host
 }
+
+self.addEventListener('install', (event) => {
+  console.log('インストール');
+});
 
 // Service Workderのライフサイクルでfetchしたときの処理
 self.addEventListener('fetch', (event: any) => {
@@ -78,9 +93,9 @@ self.addEventListener('fetch', (event: any) => {
     ) {
       // ヘッダ情報をクローンする
       const headers = new Headers()
-      req.headers.forEach((val, key) => {
-        headers.append(key, val)
-      })
+      for (let entry of req.headers.entries()) {
+        headers.append(entry[0], entry[1]);
+      }
       // クローンしたヘッダにFirebase AuthのIdTokenを追加
       headers.append('Authorization', 'Bearer ' + idToken)
 
@@ -162,3 +177,4 @@ self.addEventListener('activate', (event: any) => {
     })
   )
 })
+

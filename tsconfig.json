@@ -16,6 +16,6 @@
     "baseUrl": "./",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/hooks/auth/service_worker.js", "service_worker.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "firebase_service_worker.js", "service_worker.js"],
   "exclude": ["node_modules"]
 }

@@ -27,11 +27,7 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   return (
     <ApolloProvider client={client}>
       <ChakraProvider>
-        <AuthProvider>
-          {
-            getLayout(<Component {...pageProps} />)
-          }
-        </AuthProvider>
+        <AuthProvider>{getLayout(<Component {...pageProps} />)}</AuthProvider>
       </ChakraProvider>
     </ApolloProvider>
   )

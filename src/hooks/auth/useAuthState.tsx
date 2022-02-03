@@ -36,29 +36,10 @@ const useAuthState = () => {
       } else {
         setAuthState({ ...INITIAL_AUTH_STATE, isLoading: false })
       }
+      console.log(user)
     })
 
     return () => unsubscribe()
-  }, [])
-
-  useEffect(() => {
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', function () {
-        navigator.serviceWorker
-          .register('./sw.js', { scope: '/' })
-          .then(
-            (registration) => {
-              console.log(
-                'Service Worker registration successful with scope: ',
-                registration.scope
-              )
-            },
-            (err) => {
-              console.log('Service Worker registration failed: ', err)
-            }
-          )
-      })
-    }
   }, [])
 
   useEffect(() => {
@@ -66,14 +47,29 @@ const useAuthState = () => {
     const isPublicPath = currentPath.startsWith('/login')
     const user = authState.user
     const loading = authState.isLoading
-    console.log(currentPath)
 
     if (!loading && !user && !isPublicPath) {
-      console.log('user:', user)
-      console.log('loading:', loading)
       router.push('/login', currentPath)
     }
   }, [authState.isLoading, authState.user, router])
+
+  useEffect(() => {
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('/sw.js', { scope: '/' }).then(
+          (registration) => {
+            console.log(
+              'Service Worker registration successful with scope: ',
+              registration.scope
+            )
+          },
+          (err) => {
+            console.log('Service Worker registration failed: ', err)
+          }
+        )
+      })
+    }
+  }, [])
 
   return authState
 }
