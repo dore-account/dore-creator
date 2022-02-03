@@ -1,6 +1,6 @@
 import { Center, Heading, VStack } from '@chakra-ui/react'
 import React, { ReactElement } from 'react'
-import { LoginForm } from 'src/components/pages/login/Form'
+import { LoginForm } from 'src/components/auth/LoginForm'
 import { AuthButton } from 'src/components/common/authButton'
 import { Layout } from 'src/components/layout/layout'
 
