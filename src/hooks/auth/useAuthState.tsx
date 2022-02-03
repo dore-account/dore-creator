@@ -1,7 +1,8 @@
-import { getIdToken, onAuthStateChanged, User } from 'firebase/auth'
+import { getIdToken, onIdTokenChanged, User } from 'firebase/auth'
 import { useRouter } from 'next/router'
 import { createContext, useContext, useEffect, useState } from 'react'
-import { firebaseAuth } from 'src/libs/firebase'
+import nookies from 'nookies'
+import { firebase } from 'src/libs/firebase'
 
 export type AuthState = {
   isSignedIn: boolean
@@ -15,6 +16,8 @@ const INITIAL_AUTH_STATE = {
   user: null,
 }
 
+const PublicPaths: string[] = ['/login', '/signup']
+
 const AuthContext = createContext<AuthState>({} as AuthState)
 
 export const useAuthContext = () => {
@@ -26,14 +29,21 @@ const useAuthState = () => {
   const router = useRouter()
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(firebaseAuth, (user) => {
+    const unsubscribe = onIdTokenChanged(firebase.auth(), async (user) => {
       if (user) {
+        const idToken = await getIdToken(user)
+        // jwtをcookieに保存
+        nookies.set(null, 'ID_TOKEN', idToken, {})
         setAuthState({
           isSignedIn: true,
           isLoading: false,
           user: user,
         })
       } else {
+        // cookiesを削除
+        nookies.destroy(null, 'ID_TOKEN')
+        // ユーザーがログアウトしたらcookieを破棄
+        nookies.set(null, 'ID_TOKEN', '', {})
         setAuthState({ ...INITIAL_AUTH_STATE, isLoading: false })
       }
       console.log(user)
@@ -44,7 +54,9 @@ const useAuthState = () => {
 
   useEffect(() => {
     const currentPath = router.pathname
-    const isPublicPath = currentPath.startsWith('/login')
+    const isPublicPath = PublicPaths.some((path) =>
+      currentPath.startsWith(path)
+    )
     const user = authState.user
     const loading = authState.isLoading
 
@@ -52,24 +64,6 @@ const useAuthState = () => {
       router.push('/login', currentPath)
     }
   }, [authState.isLoading, authState.user, router])
-
-  useEffect(() => {
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', function () {
-        navigator.serviceWorker.register('/sw.js', { scope: '/' }).then(
-          (registration) => {
-            console.log(
-              'Service Worker registration successful with scope: ',
-              registration.scope
-            )
-          },
-          (err) => {
-            console.log('Service Worker registration failed: ', err)
-          }
-        )
-      })
-    }
-  }, [])
 
   return authState
 }
