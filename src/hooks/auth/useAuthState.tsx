@@ -2,7 +2,7 @@ import { getIdToken, onIdTokenChanged, User } from 'firebase/auth'
 import { useRouter } from 'next/router'
 import { createContext, useContext, useEffect, useState } from 'react'
 import nookies from 'nookies'
-import { firebase } from 'src/libs/firebase'
+import { firebase, getFirebaseApp } from 'src/libs/firebase'
 
 export type AuthState = {
   isSignedIn: boolean
@@ -29,7 +29,7 @@ const useAuthState = () => {
   const router = useRouter()
 
   useEffect(() => {
-    const unsubscribe = onIdTokenChanged(firebase.auth(), async (user) => {
+    const unsubscribe = onIdTokenChanged(firebase.auth(getFirebaseApp()), async (user) => {
       if (user) {
         const idToken = await getIdToken(user)
         // jwtをcookieに保存
@@ -46,7 +46,6 @@ const useAuthState = () => {
         nookies.set(null, 'ID_TOKEN', '', {})
         setAuthState({ ...INITIAL_AUTH_STATE, isLoading: false })
       }
-      console.log(user)
     })
 
     return () => unsubscribe()

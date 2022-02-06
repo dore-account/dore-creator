@@ -11,7 +11,6 @@ interface Props {
 }
 
 function Home({ stars }: Props) {
-  console.log(stars)
   return (
     <div className={styles.container}>
       <main className={styles.main}>
@@ -59,9 +58,6 @@ Home.getLayout = function getLayout(page: ReactElement) {
 }
 
 Home.getInitialProps = async (ctx: GetServerSidePropsContext) => {
-  console.log('----------------------')
-  console.log(ctx.req.headers.authorization)
-  console.log(process.env.NODE_ENV === 'production')
   return { stars: ctx.req.headers.authorization }
 }
 
