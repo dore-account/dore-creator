@@ -18,17 +18,13 @@ function createApolloClient(
 ) {
   const httpLink = createHttpLink({
     uri: `${process.env.NEXT_PUBLIC_BACKEND_URL}/graphql`,
-    credentials: 'same-origin',
+    credentials: 'include',
   })
 
   const authLink = setContext((_, { headers }) => {
-    const token = headers.authorization || ''
     // JWT取り出し
-    const accessToken = nookies.get(ctx) 
-    console.log('cookies', headers.cookies)
-    console.log('-----------------------');
-    console.log('token', accessToken["ID_TOKEN"])
-    
+    const accessToken = nookies.get(ctx)
+    const token = accessToken['ID_TOKEN'] || ''
 
     return {
       headers: {
