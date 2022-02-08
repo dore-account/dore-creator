@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import Link from 'next/link'
 import { GetServerSidePropsContext } from 'next/types'
 import { ReactElement } from 'react'
