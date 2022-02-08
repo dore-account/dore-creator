@@ -1,9 +1,9 @@
 overwrite: true
-schema: "./schema.graphql"
-documents: "src/libs/graphql/**/*.graphql"
+schema: './schema.graphql'
+documents: 'src/libs/graphql/**/*.graphql'
 generates:
-  src/libs/graphql/__generated__/graphql.ts:
+  src/libs/graphql/graphql.ts:
     plugins:
-      - "typescript"
-      - "typescript-operations"
-      - "typescript-react-apollo"
+      - 'typescript'
+      - 'typescript-operations'
+      - 'typescript-react-apollo'
