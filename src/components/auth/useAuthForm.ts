@@ -1,25 +1,33 @@
 import { EmailAuthProvider, GoogleAuthProvider } from 'firebase/auth'
 import { auth } from 'firebaseui'
 import 'firebase/compat/auth'
-import { getFirebaseApp, firebase, config } from 'src/libs/firebase'
+import { firebase, config } from 'src/libs/firebase'
 
 export const useAuthForm = () => {
   firebase.initializeApp(config)
 
-  const signUpConfig: auth.Config = {
+  const uiConfig: auth.Config = {
+    callbacks: {
+      signInSuccessWithAuthResult: function(authResult, redirectUrl) {
+        // isNewUserがtrueだったらユーザー登録ページに遷移させたい
+        var user = authResult.user;
+        var isNewUser = authResult.additionalUserInfo.isNewUser;
+        return true;
+      },
+    },
     signInSuccessUrl: '/',
     signInOptions: [
       {
         provider: EmailAuthProvider.PROVIDER_ID,
         requireDisplayName: false,
-        fullLabel: 'メールで登録',
+        fullLabel: 'メール',
         disableSignUp: {
           status: true,
         },
       },
       {
         provider: GoogleAuthProvider.PROVIDER_ID,
-        fullLabel: 'Googleで登録',
+        fullLabel: 'Google',
       },
       // TwitterAuthProvider.PROVIDER_ID,
     ],
@@ -29,28 +37,5 @@ export const useAuthForm = () => {
     privacyPolicyUrl: '<your-privacy-policy-url>',
   }
 
-  const signInConfig: auth.Config = {
-    signInSuccessUrl: '/',
-    signInOptions: [
-      {
-        provider: EmailAuthProvider.PROVIDER_ID,
-        requireDisplayName: false,
-        fullLabel: 'メールでログイン',
-        disableSignUp: {
-          status: true,
-        },
-      },
-      {
-        provider: GoogleAuthProvider.PROVIDER_ID,
-        fullLabel: 'Googleでログイン',
-      },
-      // TwitterAuthProvider.PROVIDER_ID,
-    ],
-    // 利用規約url.
-    tosUrl: '<your-tos-url>',
-    // プライバシーポリシーurl.
-    privacyPolicyUrl: '<your-privacy-policy-url>',
-  }
-
-  return { signUpConfig, signInConfig }
+  return { uiConfig }
 }

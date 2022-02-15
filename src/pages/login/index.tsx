@@ -1,10 +1,7 @@
-import { Box, Button, Center, Heading, VStack } from '@chakra-ui/react'
-import Link from 'next/link'
-import { useRouter } from 'next/router'
+import { Center, Heading, VStack } from '@chakra-ui/react'
 import React, { ReactElement } from 'react'
-import { LoginForm } from 'src/components/auth/LoginForm'
-import { ActionRouterTextButton } from 'src/components/common/actionRouterTextButton'
-import { AuthButton } from 'src/components/common/authButton'
+import { AuthForm } from 'src/components/auth/AuthForm'
+import { ActionRouterTextButton } from 'src/components/common/Button/actionRouterTextButton'
 import { Layout } from 'src/components/layout/layout'
 
 export default function LoginPage() {
@@ -12,7 +9,7 @@ export default function LoginPage() {
     <Center w="full" h="100vh">
       <VStack as="form" direction="column" w="80" p="4" border="md">
         <Heading size="md">DORE</Heading>
-        <LoginForm />
+        <AuthForm />
       </VStack>
     </Center>
   )
