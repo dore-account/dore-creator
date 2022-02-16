@@ -19,9 +19,573 @@
         "enumValues": null
       },
       {
+        "kind": "OBJECT",
+        "name": "Creator",
+        "description": null,
+        "interfaces": [],
+        "possibleTypes": null,
+        "fields": [
+          {
+            "name": "category",
+            "description": "クリエイターのカテゴリー",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "CreatorCategory",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "args": []
+          },
+          {
+            "name": "id",
+            "description": "クリエイターID",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "args": []
+          },
+          {
+            "name": "info",
+            "description": "クリエイター特有の情報",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "CreatorInfo",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "args": []
+          },
+          {
+            "name": "user",
+            "description": null,
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "User",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "args": []
+          }
+        ],
+        "inputFields": null,
+        "enumValues": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "CreatorCategory",
+        "description": null,
+        "interfaces": [],
+        "possibleTypes": null,
+        "fields": [
+          {
+            "name": "creatorId",
+            "description": null,
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "args": []
+          },
+          {
+            "name": "id",
+            "description": "クリエイターID",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "args": []
+          },
+          {
+            "name": "name",
+            "description": "カテゴリー",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "args": []
+          }
+        ],
+        "inputFields": null,
+        "enumValues": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "CreatorInfo",
+        "description": null,
+        "interfaces": [],
+        "possibleTypes": null,
+        "fields": [
+          {
+            "name": "belongs",
+            "description": "所属先",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "args": []
+          },
+          {
+            "name": "creatorId",
+            "description": null,
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "args": []
+          },
+          {
+            "name": "id",
+            "description": "クリエイターID",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "args": []
+          }
+        ],
+        "inputFields": null,
+        "enumValues": null
+      },
+      {
         "kind": "INPUT_OBJECT",
-        "name": "CreateUserDetailInput",
-        "description": "Autogenerated input type of CreateUserDetail",
+        "name": "CreatorInput",
+        "description": null,
+        "interfaces": null,
+        "possibleTypes": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "categoryId",
+            "description": null,
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "belongs",
+            "description": null,
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          }
+        ],
+        "enumValues": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "DeleteUserImageInput",
+        "description": "Autogenerated input type of DeleteUserImage",
+        "interfaces": null,
+        "possibleTypes": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "clientMutationId",
+            "description": "A unique identifier for the client performing the mutation.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "id",
+            "description": null,
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          }
+        ],
+        "enumValues": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "DeleteUserImagePayload",
+        "description": "Autogenerated return type of DeleteUserImage",
+        "interfaces": [],
+        "possibleTypes": null,
+        "fields": [
+          {
+            "name": "clientMutationId",
+            "description": "A unique identifier for the client performing the mutation.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "args": []
+          },
+          {
+            "name": "user",
+            "description": null,
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "User",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "args": []
+          }
+        ],
+        "inputFields": null,
+        "enumValues": null
+      },
+      {
+        "kind": "ENUM",
+        "name": "GenderStatus",
+        "description": null,
+        "interfaces": null,
+        "possibleTypes": null,
+        "fields": null,
+        "inputFields": null,
+        "enumValues": [
+          {
+            "name": "male",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "woman",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ]
+      },
+      {
+        "kind": "SCALAR",
+        "name": "ID",
+        "description": "Represents a unique identifier that is Base64 obfuscated. It is often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `\"VXNlci0xMA==\"`) or integer (such as `4`) input value will be accepted as an ID.",
+        "interfaces": null,
+        "possibleTypes": null,
+        "fields": null,
+        "inputFields": null,
+        "enumValues": null
+      },
+      {
+        "kind": "SCALAR",
+        "name": "Int",
+        "description": "Represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.",
+        "interfaces": null,
+        "possibleTypes": null,
+        "fields": null,
+        "inputFields": null,
+        "enumValues": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "Mutation",
+        "description": null,
+        "interfaces": [],
+        "possibleTypes": null,
+        "fields": [
+          {
+            "name": "deleteUserImage",
+            "description": null,
+            "type": {
+              "kind": "OBJECT",
+              "name": "DeleteUserImagePayload",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "args": [
+              {
+                "name": "input",
+                "description": "Parameters for DeleteUserImage",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "DeleteUserImageInput",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ]
+          },
+          {
+            "name": "updateCreator",
+            "description": null,
+            "type": {
+              "kind": "OBJECT",
+              "name": "UpdateCreatorPayload",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "args": [
+              {
+                "name": "input",
+                "description": "Parameters for UpdateCreator",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "UpdateCreatorInput",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ]
+          },
+          {
+            "name": "updateUser",
+            "description": null,
+            "type": {
+              "kind": "OBJECT",
+              "name": "UpdateUserPayload",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "args": [
+              {
+                "name": "input",
+                "description": "Parameters for UpdateUser",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "UpdateUserInput",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ]
+          },
+          {
+            "name": "updateUserInfo",
+            "description": null,
+            "type": {
+              "kind": "OBJECT",
+              "name": "UpdateUserInfoPayload",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "args": [
+              {
+                "name": "input",
+                "description": "Parameters for UpdateUserInfo",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "UpdateUserInfoInput",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ]
+          },
+          {
+            "name": "uploadUserImage",
+            "description": null,
+            "type": {
+              "kind": "OBJECT",
+              "name": "UploadUserImagePayload",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "args": [
+              {
+                "name": "input",
+                "description": "Parameters for UploadUserImage",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "UploadUserImageInput",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ]
+          }
+        ],
+        "inputFields": null,
+        "enumValues": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "Query",
+        "description": null,
+        "interfaces": [],
+        "possibleTypes": null,
+        "fields": [
+          {
+            "name": "creators",
+            "description": null,
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "Creator",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "args": []
+          },
+          {
+            "name": "user",
+            "description": null,
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "User",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "args": []
+          }
+        ],
+        "inputFields": null,
+        "enumValues": null
+      },
+      {
+        "kind": "SCALAR",
+        "name": "String",
+        "description": "Represents textual data as UTF-8 character sequences. This type is most often used by GraphQL to represent free-form human-readable text.",
+        "interfaces": null,
+        "possibleTypes": null,
+        "fields": null,
+        "inputFields": null,
+        "enumValues": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "UpdateCreatorInput",
+        "description": "Autogenerated input type of UpdateCreator",
         "interfaces": null,
         "possibleTypes": null,
         "fields": null,
@@ -44,7 +608,7 @@
               "name": null,
               "ofType": {
                 "kind": "INPUT_OBJECT",
-                "name": "UserDetailInput",
+                "name": "CreatorInput",
                 "ofType": null
               }
             },
@@ -55,8 +619,152 @@
       },
       {
         "kind": "OBJECT",
-        "name": "CreateUserDetailPayload",
-        "description": "Autogenerated return type of CreateUserDetail",
+        "name": "UpdateCreatorPayload",
+        "description": "Autogenerated return type of UpdateCreator",
+        "interfaces": [],
+        "possibleTypes": null,
+        "fields": [
+          {
+            "name": "clientMutationId",
+            "description": "A unique identifier for the client performing the mutation.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "args": []
+          },
+          {
+            "name": "creator",
+            "description": null,
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Creator",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "args": []
+          }
+        ],
+        "inputFields": null,
+        "enumValues": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "UpdateUserInfoInput",
+        "description": "Autogenerated input type of UpdateUserInfo",
+        "interfaces": null,
+        "possibleTypes": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "clientMutationId",
+            "description": "A unique identifier for the client performing the mutation.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "params",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "UserInfoInput",
+              "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "enumValues": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "UpdateUserInfoPayload",
+        "description": "Autogenerated return type of UpdateUserInfo",
+        "interfaces": [],
+        "possibleTypes": null,
+        "fields": [
+          {
+            "name": "clientMutationId",
+            "description": "A unique identifier for the client performing the mutation.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "args": []
+          },
+          {
+            "name": "user",
+            "description": null,
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "User",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "args": []
+          }
+        ],
+        "inputFields": null,
+        "enumValues": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "UpdateUserInput",
+        "description": "Autogenerated input type of UpdateUser",
+        "interfaces": null,
+        "possibleTypes": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "clientMutationId",
+            "description": "A unique identifier for the client performing the mutation.",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "params",
+            "description": null,
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "INPUT_OBJECT",
+                "name": "UserInput",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          }
+        ],
+        "enumValues": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "UpdateUserPayload",
+        "description": "Autogenerated return type of UpdateUser",
         "interfaces": [],
         "possibleTypes": null,
         "fields": [
@@ -94,166 +802,8 @@
       },
       {
         "kind": "SCALAR",
-        "name": "ID",
-        "description": "Represents a unique identifier that is Base64 obfuscated. It is often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `\"VXNlci0xMA==\"`) or integer (such as `4`) input value will be accepted as an ID.",
-        "interfaces": null,
-        "possibleTypes": null,
-        "fields": null,
-        "inputFields": null,
-        "enumValues": null
-      },
-      {
-        "kind": "SCALAR",
-        "name": "Int",
-        "description": "Represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.",
-        "interfaces": null,
-        "possibleTypes": null,
-        "fields": null,
-        "inputFields": null,
-        "enumValues": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "Mutation",
+        "name": "Upload",
         "description": null,
-        "interfaces": [],
-        "possibleTypes": null,
-        "fields": [
-          {
-            "name": "createUserDetail",
-            "description": null,
-            "type": {
-              "kind": "OBJECT",
-              "name": "CreateUserDetailPayload",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null,
-            "args": [
-              {
-                "name": "input",
-                "description": "Parameters for CreateUserDetail",
-                "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "INPUT_OBJECT",
-                    "name": "CreateUserDetailInput",
-                    "ofType": null
-                  }
-                },
-                "defaultValue": null
-              }
-            ]
-          },
-          {
-            "name": "updateUserDetail",
-            "description": null,
-            "type": {
-              "kind": "OBJECT",
-              "name": "UpdateUserDetailPayload",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null,
-            "args": [
-              {
-                "name": "input",
-                "description": "Parameters for UpdateUserDetail",
-                "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "INPUT_OBJECT",
-                    "name": "UpdateUserDetailInput",
-                    "ofType": null
-                  }
-                },
-                "defaultValue": null
-              }
-            ]
-          }
-        ],
-        "inputFields": null,
-        "enumValues": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "Query",
-        "description": null,
-        "interfaces": [],
-        "possibleTypes": null,
-        "fields": [
-          {
-            "name": "getUser",
-            "description": null,
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "User",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null,
-            "args": [
-              {
-                "name": "id",
-                "description": null,
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "ID",
-                  "ofType": null
-                },
-                "defaultValue": null
-              }
-            ]
-          },
-          {
-            "name": "getUsers",
-            "description": null,
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "OBJECT",
-                    "name": "User",
-                    "ofType": null
-                  }
-                }
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null,
-            "args": [
-              {
-                "name": "id",
-                "description": null,
-                "type": {
-                  "kind": "SCALAR",
-                  "name": "ID",
-                  "ofType": null
-                },
-                "defaultValue": null
-              }
-            ]
-          }
-        ],
-        "inputFields": null,
-        "enumValues": null
-      },
-      {
-        "kind": "SCALAR",
-        "name": "String",
-        "description": "Represents textual data as UTF-8 character sequences. This type is most often used by GraphQL to represent free-form human-readable text.",
         "interfaces": null,
         "possibleTypes": null,
         "fields": null,
@@ -262,8 +812,8 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "UpdateUserDetailInput",
-        "description": "Autogenerated input type of UpdateUserDetail",
+        "name": "UploadUserImageInput",
+        "description": "Autogenerated input type of UploadUserImage",
         "interfaces": null,
         "possibleTypes": null,
         "fields": null,
@@ -279,28 +829,14 @@
             "defaultValue": null
           },
           {
-            "name": "id",
+            "name": "image",
             "description": null,
             "type": {
               "kind": "NON_NULL",
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "ID",
-                "ofType": null
-              }
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "params",
-            "description": null,
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "INPUT_OBJECT",
-                "name": "UserDetailInput",
+                "name": "Upload",
                 "ofType": null
               }
             },
@@ -311,8 +847,8 @@
       },
       {
         "kind": "OBJECT",
-        "name": "UpdateUserDetailPayload",
-        "description": "Autogenerated return type of UpdateUserDetail",
+        "name": "UploadUserImagePayload",
+        "description": "Autogenerated return type of UploadUserImage",
         "interfaces": [],
         "possibleTypes": null,
         "fields": [
@@ -356,12 +892,32 @@
         "possibleTypes": null,
         "fields": [
           {
-            "name": "birthDayDd",
-            "description": null,
+            "name": "age",
+            "description": "年齢",
             "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "args": []
+          },
+          {
+            "name": "birthDayDd",
+            "description": "誕生日",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null,
@@ -369,11 +925,15 @@
           },
           {
             "name": "birthDayMm",
-            "description": null,
+            "description": "誕生月",
             "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null,
@@ -381,11 +941,15 @@
           },
           {
             "name": "birthDayYy",
-            "description": null,
+            "description": "誕生年",
             "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null,
@@ -395,9 +959,13 @@
             "name": "gender",
             "description": null,
             "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "ENUM",
+                "name": "GenderStatus",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null,
@@ -420,12 +988,56 @@
             "args": []
           },
           {
+            "name": "images",
+            "description": null,
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "UserImage",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "args": []
+          },
+          {
+            "name": "info",
+            "description": null,
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "UserInfo",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "args": []
+          },
+          {
             "name": "instagramLink",
             "description": null,
             "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null,
@@ -435,9 +1047,13 @@
             "name": "introduction",
             "description": null,
             "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null,
@@ -447,9 +1063,29 @@
             "name": "name",
             "description": null,
             "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "args": []
+          },
+          {
+            "name": "slug",
+            "description": "@** のようなuserの識別子",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null,
@@ -459,9 +1095,13 @@
             "name": "tiktokLink",
             "description": null,
             "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null,
@@ -469,18 +1109,6 @@
           },
           {
             "name": "twitterLink",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null,
-            "args": []
-          },
-          {
-            "name": "uid",
             "description": null,
             "type": {
               "kind": "NON_NULL",
@@ -500,15 +1128,117 @@
         "enumValues": null
       },
       {
+        "kind": "OBJECT",
+        "name": "UserImage",
+        "description": null,
+        "interfaces": [],
+        "possibleTypes": null,
+        "fields": [
+          {
+            "name": "id",
+            "description": "画像のID",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "args": []
+          },
+          {
+            "name": "path",
+            "description": "画像のURL",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "args": []
+          }
+        ],
+        "inputFields": null,
+        "enumValues": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "UserInfo",
+        "description": null,
+        "interfaces": [],
+        "possibleTypes": null,
+        "fields": [
+          {
+            "name": "id",
+            "description": "クリエイターID",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "args": []
+          },
+          {
+            "name": "stan",
+            "description": "推し",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "args": []
+          },
+          {
+            "name": "userId",
+            "description": null,
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null,
+            "args": []
+          }
+        ],
+        "inputFields": null,
+        "enumValues": null
+      },
+      {
         "kind": "INPUT_OBJECT",
-        "name": "UserDetailInput",
+        "name": "UserInfoInput",
         "description": null,
         "interfaces": null,
         "possibleTypes": null,
         "fields": null,
         "inputFields": [
           {
-            "name": "uid",
+            "name": "stan",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -516,14 +1246,29 @@
               "ofType": null
             },
             "defaultValue": null
-          },
+          }
+        ],
+        "enumValues": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "UserInput",
+        "description": null,
+        "interfaces": null,
+        "possibleTypes": null,
+        "fields": null,
+        "inputFields": [
           {
             "name": "name",
             "description": null,
             "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
             },
             "defaultValue": null
           },
@@ -531,9 +1276,13 @@
             "name": "gender",
             "description": null,
             "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "ENUM",
+                "name": "GenderStatus",
+                "ofType": null
+              }
             },
             "defaultValue": null
           },
@@ -551,9 +1300,13 @@
             "name": "birthDayYy",
             "description": null,
             "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
             },
             "defaultValue": null
           },
@@ -561,9 +1314,13 @@
             "name": "birthDayMm",
             "description": null,
             "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
             },
             "defaultValue": null
           },
@@ -571,9 +1328,13 @@
             "name": "birthDayDd",
             "description": null,
             "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
             },
             "defaultValue": null
           },
