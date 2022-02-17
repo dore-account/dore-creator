@@ -3,41 +3,24 @@ import {
   FormLabel,
   Input,
   FormErrorMessage,
-  Editable,
-  EditableInput,
-  EditablePreview,
 } from '@chakra-ui/react'
 import React from 'react'
-import { useEditFormContext } from './useEditFormContext'
+import { useEditFormContext } from '../useEditFormContext'
 
 export const InputName = () => {
   const { register, errors } = useEditFormContext()
 
   return (
     <FormControl isRequired isInvalid={errors.name}>
-      <FormLabel htmlFor="name">name</FormLabel>
-      {/* <Editable
-        id="name"
-        placeholder="test@example.com"
-        defaultValue="Take some chakra"
-        {...register('name', {
-          required: 'This is required',
-          minLength: { value: 4, message: 'Minimum length should be 4' },
-        })}
-      >
-        <EditablePreview />
-        <EditableInput />
-      </Editable> */}
+      <FormLabel htmlFor="name">名前</FormLabel>
       <Input
         id="name"
-        placeholder="test@example.com"
+        placeholder="山田 太朗"
         {...register('name', {
-          required: 'This is required',
-          minLength: { value: 4, message: 'Minimum length should be 4' },
+          required: '入力必須です',
         })}
       />
-      <FormErrorMessage>{errors && errors.message} </FormErrorMessage>
+      <FormErrorMessage>{errors.name && errors.name.message} </FormErrorMessage>
     </FormControl>
   )
 }
-
