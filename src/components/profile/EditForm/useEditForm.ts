@@ -1,5 +1,5 @@
 import { useState, ChangeEventHandler, useEffect, createContext } from 'react'
-import { useForm } from 'react-hook-form'
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 import {
   useUploadUserImageMutation,
   useDeleteUserImageMutation,
@@ -8,13 +8,13 @@ import {
 
 export const useEditForm = (initialUser: User) => {
   const [user, setUser] = useState<User>(initialUser)
-  // const [updateImage, { data, loading, error }] = useUploadUserImageMutation()
   const [updateImage] = useUploadUserImageMutation()
   const [deleteImage] = useDeleteUserImageMutation()
   const {
     register,
-    formState: { errors, isSubmitting },
+    formState: { errors, isSubmitting, isValid },
     handleSubmit,
+    control,
   } = useForm({
     mode: 'all',
   })
@@ -44,12 +44,20 @@ export const useEditForm = (initialUser: User) => {
     })
   }
 
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    console.log(data);
+    console.log(JSON.stringify(data))
+  }
+
+
   return {
     user,
     register,
     errors,
+    control,
     isSubmitting,
-    handleSubmit,
+    isValid,
+    handleSubmit: handleSubmit(onSubmit),
     handleImageInputChange,
     handleImageDelete,
   }
