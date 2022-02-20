@@ -2,20 +2,25 @@ import { EmailAuthProvider, GoogleAuthProvider } from 'firebase/auth'
 import { auth } from 'firebaseui'
 import 'firebase/compat/auth'
 import { firebase, config } from 'src/libs/firebase'
+import { useRouter } from 'next/router'
 
 export const useAuthForm = () => {
   firebase.initializeApp(config)
+  const router = useRouter()
 
   const uiConfig: auth.Config = {
     callbacks: {
       signInSuccessWithAuthResult: function(authResult, redirectUrl) {
         // isNewUserがtrueだったらユーザー登録ページに遷移させたい
-        var user = authResult.user;
         var isNewUser = authResult.additionalUserInfo.isNewUser;
+        if (isNewUser) {
+          router.push('/profile/register')
+        } else {
+          router.push('/')
+        }
         return true;
       },
     },
-    signInSuccessUrl: '/',
     signInOptions: [
       {
         provider: EmailAuthProvider.PROVIDER_ID,
