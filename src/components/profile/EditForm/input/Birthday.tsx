@@ -13,7 +13,10 @@ export const InputBirthday = () => {
   const { errors, register } = useEditFormContext()
 
   return (
-    <FormControl isRequired isInvalid={errors.birth_yy || errors.birth_mm || errors.birth_dd }>
+    <FormControl
+      isRequired
+      isInvalid={errors.birth_yy || errors.birth_mm || errors.birth_dd}
+    >
       <FormLabel htmlFor="birthday">生年月日</FormLabel>
       <HStack>
         <Input
@@ -26,6 +29,11 @@ export const InputBirthday = () => {
             maxLength: {
               value: 4,
               message: '4文字以下で入力してください。',
+            },
+            minLength: 4,
+            pattern: {
+              value: /^[0-9]+$/,
+              message: '半角数字で入力してください。',
             },
           })}
         />
@@ -41,6 +49,10 @@ export const InputBirthday = () => {
               value: 2,
               message: '2文字以下で入力してください。',
             },
+            pattern: {
+              value: /^[0-9]+$/,
+              message: '半角数字で入力してください。',
+            },
           })}
         />
         <Text fontSize="md">月</Text>
@@ -54,6 +66,10 @@ export const InputBirthday = () => {
             maxLength: {
               value: 2,
               message: '2文字以下で入力してください。',
+            },
+            pattern: {
+              value: /^[0-9]+$/,
+              message: '半角数字で入力してください。',
             },
           })}
         />
