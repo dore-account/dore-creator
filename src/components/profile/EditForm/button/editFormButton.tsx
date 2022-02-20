@@ -4,8 +4,7 @@ import { useEditFormContext } from '../useEditFormContext'
 
 export const EditFormButton = () => {
   const { isValid, isSubmitting } = useEditFormContext()
-  console.log(isValid);
-  
+
   return (
     <Button
       type="submit"

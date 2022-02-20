@@ -1,15 +1,11 @@
 import Link from 'next/link'
 import { GetServerSidePropsContext } from 'next/types'
 import { ReactElement } from 'react'
-import { AuthButton } from 'src/components/common/authButton'
+import { AuthButton } from 'src/components/auth/button/authButton'
 import { Layout } from 'src/components/layout/layout'
 import styles from '../styles/Home.module.css'
 
-interface Props {
-  stars?: string
-}
-
-function Home({ stars }: Props) {
+function Home() {
   return (
     <div className={styles.container}>
       <main className={styles.main}>
@@ -56,8 +52,5 @@ Home.getLayout = function getLayout(page: ReactElement) {
   )
 }
 
-Home.getInitialProps = async (ctx: GetServerSidePropsContext) => {
-  return { stars: ctx.req.headers.authorization }
-}
 
 export default Home
