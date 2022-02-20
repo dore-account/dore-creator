@@ -16,4 +16,13 @@ DORE/
 
 ## setup
 
+```
+# クローン
+git clone git@github.com:tamaki8021/dore.git
+
+# インストール
+yarn install
+
+```
+
 ## graphql
