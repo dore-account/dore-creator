@@ -1,9 +1,11 @@
 import {
   ApolloClient,
-  createHttpLink,
+  ApolloLink,
   InMemoryCache,
   NormalizedCacheObject,
 } from '@apollo/client'
+import { createUploadLink } from 'apollo-upload-client'
+
 import { setContext } from '@apollo/client/link/context'
 
 import { useMemo } from 'react'
@@ -16,7 +18,7 @@ function createApolloClient(
   initialState: NormalizedCacheObject,
   ctx?: GetServerSidePropsContext
 ) {
-  const httpLink = createHttpLink({
+  const httpLink = createUploadLink({
     uri: `${process.env.NEXT_PUBLIC_BACKEND_URL}/graphql`,
     credentials: 'include',
   })
@@ -37,7 +39,7 @@ function createApolloClient(
   return new ApolloClient({
     ssrMode: typeof window === 'undefined',
     connectToDevTools: process.browser,
-    link: authLink.concat(httpLink),
+    link: authLink.concat((httpLink as unknown) as ApolloLink),
     cache: new InMemoryCache().restore(initialState || {}),
   })
 }

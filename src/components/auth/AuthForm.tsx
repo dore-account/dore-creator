@@ -1,13 +1,13 @@
 import React from 'react'
 
-import { firebase, getFirebaseApp } from 'src/libs/firebase/index'
+import { firebase } from 'src/libs/firebase/index'
 import { Center, VStack } from '@chakra-ui/react'
 import FirebaseUIAuth from 'react-firebaseui-localized'
 import 'firebase/compat/auth'
 import { useAuthForm } from './useAuthForm'
 
-export const LoginForm: React.FC = () => {
-  const { signInConfig } = useAuthForm()
+export const AuthForm: React.FC = () => {
+  const { uiConfig } = useAuthForm()
 
   return (
     <>
@@ -16,7 +16,7 @@ export const LoginForm: React.FC = () => {
           <FirebaseUIAuth
             lang="ja"
             version="4.7.3"
-            config={signInConfig}
+            config={uiConfig}
             auth={firebase.auth()}
             firebase={firebase}
             rtl={undefined}

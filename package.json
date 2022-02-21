@@ -20,6 +20,7 @@
     "@emotion/styled": "11.6.0",
     "apollo-link-context": "^1.0.20",
     "apollo-link-http": "^1.5.17",
+    "apollo-upload-client": "^17.0.0",
     "firebase": "^9.6.3",
     "firebaseui-ja": "^1.0.0",
     "framer-motion": "4.1.17",
@@ -31,7 +32,9 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-firebaseui": "^6.0.0",
-    "react-firebaseui-localized": "^1.2.1"
+    "react-firebaseui-localized": "^1.2.1",
+    "react-hook-form": "^7.27.0",
+    "react-icons": "^4.3.1"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "2.5.0",
@@ -40,6 +43,7 @@
     "@graphql-codegen/typescript-operations": "2.2.4",
     "@graphql-codegen/typescript-react-apollo": "3.2.5",
     "@testing-library/react": "12.1.2",
+    "@types/apollo-upload-client": "^17.0.0",
     "@types/jest": "^27.0.3",
     "@types/node": "17.0.4",
     "@types/react": "17.0.38",

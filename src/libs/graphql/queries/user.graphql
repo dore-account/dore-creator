@@ -1,0 +1,25 @@
+query User {
+  user {
+    id
+    slug
+    name
+    introduction
+    gender
+    age
+    birthDayYy
+    birthDayMm
+    birthDayDd
+    twitterLink
+    instagramLink
+    tiktokLink
+    images {
+      id
+      path
+    }
+    info {
+      id
+      stan
+      userId
+    }
+  }
+}
