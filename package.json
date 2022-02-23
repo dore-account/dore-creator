@@ -18,6 +18,8 @@
     "@chakra-ui/react": "1.7.3",
     "@emotion/react": "11.7.1",
     "@emotion/styled": "11.6.0",
+    "@stripe/react-stripe-js": "^1.7.0",
+    "@stripe/stripe-js": "^1.23.0",
     "apollo-link-context": "^1.0.20",
     "apollo-link-http": "^1.5.17",
     "apollo-upload-client": "^17.0.0",
