@@ -1,0 +1,6 @@
+query SetupPaymentMethod {
+  setupPaymentMethod {
+    clientSecret
+  }
+}
+
