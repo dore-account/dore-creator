@@ -7,8 +7,8 @@ export const EditFormButton = () => {
 
   return (
     <Button
-      type="submit"
-      colorScheme="blue"
+      type='submit'
+      colorScheme='blue'
       disabled={!isValid}
       isLoading={isSubmitting}
     >

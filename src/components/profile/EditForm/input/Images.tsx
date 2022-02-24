@@ -9,14 +9,14 @@ export const InputImages = () => {
 
   return (
     <Grid
-      templateColumns="repeat(3, auto)"
-      templateRows="repeat(3, auto)"
+      templateColumns='repeat(3, auto)'
+      templateRows='repeat(3, auto)'
       gap={3}
     >
       {[...Array(6)]
         .map((_, i) => user.images[i] || { id: '', path: '' })
         .map(({ id, path }, i) => (
-          <Box key={id + i.toString()} position="relative">
+          <Box key={id + i.toString()} position='relative'>
             <ImageInput
               id={`images_${id}`}
               src={path}
@@ -24,10 +24,10 @@ export const InputImages = () => {
             />
             {id !== '' && (
               <CloseButton
-                position="absolute"
+                position='absolute'
                 top={0}
                 right={0}
-                size="sm"
+                size='sm'
                 onClick={handleImageDelete(id)}
               />
             )}

@@ -14,23 +14,23 @@ export const InputGender = () => {
 
   return (
     <FormControl isRequired isInvalid={errors.gender}>
-      <FormLabel htmlFor="gender">性別</FormLabel>
+      <FormLabel htmlFor='gender'>性別</FormLabel>
       <Controller
-        name="gender"
+        name='gender'
         control={control}
         rules={{ required: 'どちらか選択してください。' }}
         render={({ field: { onChange, value, ref } }) => (
           <RadioGroup
-            id="gender"
+            id='gender'
             ref={ref}
-            name="gender"
+            name='gender'
             isInline
             spacing={6}
             onChange={onChange}
             value={value}
           >
-            <Radio value="MALE">男性</Radio>
-            <Radio value="FEMALE">女性</Radio>
+            <Radio value='MALE'>男性</Radio>
+            <Radio value='FEMALE'>女性</Radio>
           </RadioGroup>
         )}
       />

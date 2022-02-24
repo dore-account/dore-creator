@@ -6,9 +6,9 @@ import { Layout } from 'src/components/layout/layout'
 
 export default function LoginPage() {
   return (
-    <Center w="full" h="100vh">
-      <VStack as="form" direction="column" w="80" p="4" border="md">
-        <Heading size="md">DORE</Heading>
+    <Center w='full' h='100vh'>
+      <VStack as='form' direction='column' w='80' p='4' border='md'>
+        <Heading size='md'>DORE</Heading>
         <AuthForm />
       </VStack>
     </Center>

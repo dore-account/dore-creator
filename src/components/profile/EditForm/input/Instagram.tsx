@@ -17,15 +17,15 @@ export const InputInstagram = () => {
   return (
     <FormControl isInvalid={errors.instagram}>
       <HStack>
-        <FormLabel htmlFor="instagram" w={170}>
+        <FormLabel htmlFor='instagram' w={170}>
           <HStack>
             <Icon as={BsInstagram} />
             <Text>Instagram</Text>
           </HStack>
         </FormLabel>
         <Input
-          id="instagram"
-          placeholder="ユーザーID"
+          id='instagram'
+          placeholder='ユーザーID'
           {...register('instagram')}
         />
       </HStack>

@@ -10,15 +10,15 @@ export const useAuthForm = () => {
 
   const uiConfig: auth.Config = {
     callbacks: {
-      signInSuccessWithAuthResult: function(authResult, redirectUrl) {
+      signInSuccessWithAuthResult: function (authResult, redirectUrl) {
         // isNewUserがtrueだったらユーザー登録ページに遷移させたい
-        var isNewUser = authResult.additionalUserInfo.isNewUser;
+        var isNewUser = authResult.additionalUserInfo.isNewUser
         if (isNewUser) {
           router.push('/profile/register')
         } else {
           router.push('/')
         }
-        return true;
+        return true
       },
     },
     signInOptions: [

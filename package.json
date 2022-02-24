@@ -6,6 +6,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "lint:dir": "next lint --dir src",
     "test": "jest",
     "format": "prettier --write \"./src/**/*.{ts,tsx}\"",
     "generate": "graphql-codegen --config codegen.yml",

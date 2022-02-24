@@ -29,24 +29,27 @@ const useAuthState = () => {
   const router = useRouter()
 
   useEffect(() => {
-    const unsubscribe = onIdTokenChanged(firebase.auth(getFirebaseApp()), async (user) => {
-      if (user) {
-        const idToken = await getIdToken(user)
-        // jwtをcookieに保存
-        nookies.set(null, 'ID_TOKEN', idToken, {})
-        setAuthState({
-          isSignedIn: true,
-          isLoading: false,
-          user: user,
-        })
-      } else {
-        // cookiesを削除
-        nookies.destroy(null, 'ID_TOKEN')
-        // ユーザーがログアウトしたらcookieを破棄
-        nookies.set(null, 'ID_TOKEN', '', {})
-        setAuthState({ ...INITIAL_AUTH_STATE, isLoading: false })
+    const unsubscribe = onIdTokenChanged(
+      firebase.auth(getFirebaseApp()),
+      async (user) => {
+        if (user) {
+          const idToken = await getIdToken(user)
+          // jwtをcookieに保存
+          nookies.set(null, 'ID_TOKEN', idToken, {})
+          setAuthState({
+            isSignedIn: true,
+            isLoading: false,
+            user: user,
+          })
+        } else {
+          // cookiesを削除
+          nookies.destroy(null, 'ID_TOKEN')
+          // ユーザーがログアウトしたらcookieを破棄
+          nookies.set(null, 'ID_TOKEN', '', {})
+          setAuthState({ ...INITIAL_AUTH_STATE, isLoading: false })
+        }
       }
-    })
+    )
 
     return () => unsubscribe()
   }, [])

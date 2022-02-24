@@ -12,7 +12,7 @@ export const ActionRouterTextButton: React.FC<Props> = ({ path, pathName }) => {
 
   return (
     <>
-      <Button onClick={() => router.push(path)} variant="link">
+      <Button onClick={() => router.push(path)} variant='link'>
         {pathName}
       </Button>
     </>

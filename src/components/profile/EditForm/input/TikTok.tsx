@@ -17,15 +17,15 @@ export const InputTiktok = () => {
   return (
     <FormControl isInvalid={errors.tiktok}>
       <HStack>
-        <FormLabel htmlFor="tiktok" w={170}>
+        <FormLabel htmlFor='tiktok' w={170}>
           <HStack>
             <Icon as={FaTiktok} />
             <Text>Tiktok</Text>
           </HStack>
         </FormLabel>
         <Input
-          id="tiktok"
-          placeholder="@ユーザーID"
+          id='tiktok'
+          placeholder='@ユーザーID'
           {...register('tiktok', {
             pattern: {
               value: /@[\w\-._]/,
@@ -41,4 +41,3 @@ export const InputTiktok = () => {
     </FormControl>
   )
 }
-

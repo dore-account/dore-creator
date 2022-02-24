@@ -17,12 +17,12 @@ export const InputBirthday = () => {
       isRequired
       isInvalid={errors.birth_yy || errors.birth_mm || errors.birth_dd}
     >
-      <FormLabel htmlFor="birthday">生年月日</FormLabel>
+      <FormLabel htmlFor='birthday'>生年月日</FormLabel>
       <HStack>
         <Input
-          id="birth_yy"
-          placeholder="0000"
-          type="tel"
+          id='birth_yy'
+          placeholder='0000'
+          type='tel'
           maxLength={4}
           {...register('birth_yy', {
             required: '入力必須です',
@@ -37,11 +37,11 @@ export const InputBirthday = () => {
             },
           })}
         />
-        <Text fontSize="md">年</Text>
+        <Text fontSize='md'>年</Text>
         <Input
-          id="birth_mm"
-          placeholder="0"
-          type="tel"
+          id='birth_mm'
+          placeholder='0'
+          type='tel'
           maxLength={2}
           {...register('birth_mm', {
             required: '入力必須です',
@@ -55,11 +55,11 @@ export const InputBirthday = () => {
             },
           })}
         />
-        <Text fontSize="md">月</Text>
+        <Text fontSize='md'>月</Text>
         <Input
-          id="birth_dd"
-          placeholder="0"
-          type="tel"
+          id='birth_dd'
+          placeholder='0'
+          type='tel'
           maxLength={2}
           {...register('birth_dd', {
             required: '入力必須です',
@@ -73,7 +73,7 @@ export const InputBirthday = () => {
             },
           })}
         />
-        <Text fontSize="md">日</Text>
+        <Text fontSize='md'>日</Text>
       </HStack>
       <FormErrorMessage>
         {errors.birth_yy && errors.birth_yy.message}{' '}

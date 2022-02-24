@@ -12,10 +12,10 @@ export const InputName = () => {
 
   return (
     <FormControl isRequired isInvalid={errors.name}>
-      <FormLabel htmlFor="name">名前</FormLabel>
+      <FormLabel htmlFor='name'>名前</FormLabel>
       <Input
-        id="name"
-        placeholder="山田 太朗"
+        id='name'
+        placeholder='山田 太朗'
         {...register('name', {
           required: '入力必須です',
         })}

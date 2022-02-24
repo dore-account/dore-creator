@@ -11,11 +11,11 @@ export const AuthForm: React.FC = () => {
 
   return (
     <>
-      <Center w="full" h="full" flex="1">
-        <VStack as="form" direction="column" w="100" p="4" border="md">
+      <Center w='full' h='full' flex='1'>
+        <VStack as='form' direction='column' w='100' p='4' border='md'>
           <FirebaseUIAuth
-            lang="ja"
-            version="4.7.3"
+            lang='ja'
+            version='4.7.3'
             config={uiConfig}
             auth={firebase.auth()}
             firebase={firebase}

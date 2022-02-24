@@ -12,10 +12,10 @@ export default function ProfilePage() {
   console.log(data)
 
   return (
-    <Center w="full" h="100vh">
-      <VStack as="form" direction="column" w="80" p="4" border="md">
-        <Heading size="md">{user}</Heading>
-        <Link href="/profile/edit">
+    <Center w='full' h='100vh'>
+      <VStack as='form' direction='column' w='80' p='4' border='md'>
+        <Heading size='md'>{user}</Heading>
+        <Link href='/profile/edit'>
           <a>edit</a>
         </Link>
       </VStack>

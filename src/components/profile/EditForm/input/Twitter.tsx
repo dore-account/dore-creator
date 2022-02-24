@@ -17,15 +17,15 @@ export const InputTwitter = () => {
   return (
     <FormControl isInvalid={errors.twitter}>
       <HStack>
-        <FormLabel htmlFor="twitter" w={170}>
+        <FormLabel htmlFor='twitter' w={170}>
           <HStack>
             <Icon as={BsTwitter} />
             <Text>Twitter</Text>
           </HStack>
         </FormLabel>
         <Input
-          id="twitter"
-          placeholder="@ユーザーID"
+          id='twitter'
+          placeholder='@ユーザーID'
           {...register('twitter', {
             pattern: {
               value: /@[\w\-._]/,

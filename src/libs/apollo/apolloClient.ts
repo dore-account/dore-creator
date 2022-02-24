@@ -39,7 +39,7 @@ function createApolloClient(
   return new ApolloClient({
     ssrMode: typeof window === 'undefined',
     connectToDevTools: process.browser,
-    link: authLink.concat((httpLink as unknown) as ApolloLink),
+    link: authLink.concat(httpLink as unknown as ApolloLink),
     cache: new InMemoryCache().restore(initialState || {}),
   })
 }

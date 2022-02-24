@@ -31,11 +31,13 @@ export const EditForm: React.FC<Props> = ({ initialUser, isEdit }) => {
   return (
     <EditFormContext.Provider value={handler}>
       <form onSubmit={handler.handleSubmit}>
-        <Layout headerProps={{
-          title: 'DORE',
-          rightComponent: <EditFormButton />,
-          leftComponent: isEdit ? <ArrowBackIconButton /> : <></>
-        }}>
+        <Layout
+          headerProps={{
+            title: 'DORE',
+            rightComponent: <EditFormButton />,
+            leftComponent: isEdit ? <ArrowBackIconButton /> : <></>,
+          }}
+        >
           <VStack p={5} spacing={5}>
             <InputImages />
             <InputName />

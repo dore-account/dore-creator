@@ -9,7 +9,7 @@ export const ArrowBackIconButton = () => {
   return (
     <IconButton
       onClick={() => router.back()}
-      aria-label="arrow back"
+      aria-label='arrow back'
       icon={<Icon as={IoMdArrowRoundBack} />}
     />
   )

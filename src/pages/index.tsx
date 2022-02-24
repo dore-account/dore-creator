@@ -10,7 +10,7 @@ function Home() {
     <div className={styles.container}>
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
+          Welcome to <a href='https://nextjs.org'>Next.js!</a>
         </h1>
 
         <p className={styles.description}>
@@ -19,14 +19,14 @@ function Home() {
         </p>
 
         <div className={styles.grid}>
-          <Link href="/profile" >
+          <Link href='/profile'>
             <a className={styles.card}>
               <h2>Documentation &rarr;</h2>
               <p>Find in-depth information about Next.js features and API.</p>
             </a>
           </Link>
 
-          <Link href="/login">
+          <Link href='/login'>
             <a className={styles.card}>
               <h2>Learn &rarr;</h2>
               <p>Learn about Next.js in an interactive course with quizzes!</p>
@@ -51,6 +51,5 @@ Home.getLayout = function getLayout(page: ReactElement) {
     </Layout>
   )
 }
-
 
 export default Home

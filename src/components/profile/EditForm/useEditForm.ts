@@ -45,10 +45,9 @@ export const useEditForm = (initialUser: User) => {
   }
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    console.log(data);
+    console.log(data)
     console.log(JSON.stringify(data))
   }
-
 
   return {
     user,

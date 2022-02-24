@@ -29,16 +29,16 @@ export const ImageInput: React.FC<Props & ImageProps> = ({
 
   return (
     <Center>
-      <FormLabel htmlFor={id} cursor="pointer" m="0">
-        <Skeleton isLoaded={isLoaded} width="fit-content">
+      <FormLabel htmlFor={id} cursor='pointer' m='0'>
+        <Skeleton isLoaded={isLoaded} width='fit-content'>
           <Image
-            boxSize="150px"
+            boxSize='150px'
             alt={props.alt}
             onLoad={onLoad}
             onError={onLoad}
-            objectFit="cover"
+            objectFit='cover'
             fallback={
-              <Center w={24} h={24} bg="gray.100">
+              <Center w={24} h={24} bg='gray.100'>
                 <Icon as={GrAdd} />
               </Center>
             }
@@ -47,9 +47,9 @@ export const ImageInput: React.FC<Props & ImageProps> = ({
         </Skeleton>
         <Input
           id={id}
-          type="file"
-          display="none"
-          accept="image/*"
+          type='file'
+          display='none'
+          accept='image/*'
           onChange={onChangeImage}
         />
       </FormLabel>
