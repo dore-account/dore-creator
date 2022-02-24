@@ -52,7 +52,7 @@ const useAuthState = () => {
     )
 
     return () => unsubscribe()
-  }, [])
+  }, [router])
 
   useEffect(() => {
     const currentPath = router.pathname
