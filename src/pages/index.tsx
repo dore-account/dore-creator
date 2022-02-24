@@ -3,9 +3,11 @@ import { GetServerSidePropsContext } from 'next/types'
 import { ReactElement } from 'react'
 import { AuthButton } from 'src/components/auth/button/authButton'
 import { Layout } from 'src/components/layout/layout'
+import { useAuthContext } from 'src/hooks/auth/useAuthState'
 import styles from '../styles/Home.module.css'
 
 function Home() {
+  const { isLoading } = useAuthContext()
   return (
     <div className={styles.container}>
       <main className={styles.main}>
