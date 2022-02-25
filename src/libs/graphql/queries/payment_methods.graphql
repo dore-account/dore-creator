@@ -4,6 +4,5 @@ query PaymentMethods {
     brand
     expMonth
     expYear
-    last4
   }
 }
