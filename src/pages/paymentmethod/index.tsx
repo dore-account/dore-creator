@@ -1,28 +1,20 @@
-import {
-  Box,
-  HStack,
-} from '@chakra-ui/react'
-import React from 'react'
+import { Center } from '@chakra-ui/react'
 import { Loader } from 'src/components/common/loader'
+import { PaymentMethod } from 'src/components/pages/paymentmethod/PaymentMethod/PaymentMethod'
 import { usePaymentMethodsQuery } from 'src/libs/graphql/graphql'
 
-export default function PaymentMethod() {
+export default function PaymentMethodPage() {
   const { data, loading } = usePaymentMethodsQuery()
 
   if (loading) return <Loader />
 
   return (
     <>
-      {data?.paymentMethods.map((paymentMethod) => {
-        ;<Box maxW='sm' borderWidth='1px' borderRadius='lg' overflow='hidden'>
-          <HStack>
-            {paymentMethod.brand}
-            {paymentMethod.expMonth}
-            {paymentMethod.expYear}
-            {paymentMethod.last4}
-          </HStack>
-        </Box>
-      })}
+      {!data ? (
+        <Center>登録されているカードはありません。</Center>
+      ) : (
+        <PaymentMethod data={data} />
+      )}
     </>
   )
 }
