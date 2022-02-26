@@ -16,19 +16,16 @@ export const useAuthForm = () => {
   const router = useRouter()
 
   const signIn: SubmitHandler<FieldValues> = async (data) => {
-    console.log(data)
     const success = await signInWithEmail(data.email, data.password)
     if (success) router.push('/')
   }
 
   const signUp: SubmitHandler<FieldValues> = async (data) => {
-    console.log(data)
     const success = await signUpWithEmail(data.email, data.password)
     if (success) router.push('/profile/register')
   }
 
   const sendPasswordReset: SubmitHandler<FieldValues> = async (data) => {
-    console.log(data)
     const success = await passwordReset(data.email)
     if (success) router.back()
   }

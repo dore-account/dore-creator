@@ -10,6 +10,9 @@ function Home() {
       <Link href='/profile'>
         <a>profile</a>
       </Link>
+      <Link href='/paymentmethod'>
+        <a>paymentmethod</a>
+      </Link>
     </VStack>
   )
 }
