@@ -17,8 +17,7 @@ export const NewPaymentMethod: React.FC = () => {
           <SetupForm clientSecret={clientSecret} />
         </Elements>
       ) : (
-        // <>{errorMessage}</>
-        <></>
+        <>{errorMessage}</>
       )}
     </>
   )

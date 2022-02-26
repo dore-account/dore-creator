@@ -9,12 +9,13 @@ export const useNewPaymentMethod = () => {
   const errorMessage = error?.message
 
   useEffect(() => {
-    ;(async () => {
+    const setStripe = async () => {
       const stripe = await getStripe()
       if (stripe != null) {
         setStripePromise(stripe)
       }
-    })()
+    }
+    setStripe()
   }, [])
 
   const options = {

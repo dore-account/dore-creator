@@ -3,8 +3,6 @@ import { PaymentElement } from '@stripe/react-stripe-js'
 import { Button } from '@chakra-ui/react'
 import { useSetupForm } from './useSetupForm'
 
-import { useForm } from 'react-hook-form'
-
 type Props = {
   clientSecret: string
 }
@@ -17,6 +15,7 @@ export const SetupForm: React.FC<Props> = ({ clientSecret }) => {
     <form onSubmit={onSubmit}>
       <PaymentElement />
       <Button
+        type='submit'
         disabled={isLoading || !stripe}
         isLoading={isLoading}
         colorScheme='blue'
