@@ -1,21 +1,15 @@
-import { Center, Heading, VStack } from '@chakra-ui/react'
 import React, { ReactElement } from 'react'
-import { AuthForm } from 'src/components/auth/AuthForm'
 import { ActionRouterTextButton } from 'src/components/common/Button/actionRouterTextButton'
 import { Layout } from 'src/components/layout/layout'
+import { Signin } from 'src/components/pages/auth/signin/Signin'
 
-export default function LoginPage() {
+export default function SigninPage() {
   return (
-    <Center w='full' h='100vh'>
-      <VStack as='form' direction='column' w='80' p='4' border='md'>
-        <Heading size='md'>DORE</Heading>
-        <AuthForm />
-      </VStack>
-    </Center>
+    <Signin />
   )
 }
 
-LoginPage.getLayout = function getLayout(page: ReactElement) {
+SigninPage.getLayout = function getLayout(page: ReactElement) {
   return (
     <Layout
       headerProps={{

@@ -16,7 +16,7 @@ const INITIAL_AUTH_STATE = {
   user: null,
 }
 
-const PublicPaths: string[] = ['/login', '/signup']
+const PublicPaths: string[] = ['/signin', '/signup']
 
 const AuthContext = createContext<AuthState>({} as AuthState)
 
@@ -63,7 +63,7 @@ const useAuthState = () => {
     const loading = authState.isLoading
 
     if (!loading && !user && !isPublicPath) {
-      router.push('/login', currentPath)
+      router.push('/signin', currentPath)
     }
   }, [authState.isLoading, authState.user, router])
 

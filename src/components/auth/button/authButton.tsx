@@ -13,7 +13,7 @@ export const AuthButton: React.FC = () => {
       {isSignedIn ? (
         <Button isLoading={isLoading} onClick={() => signOut(getAuth())}>ログアウト</Button>
       ) : (
-        <Button isLoading={isLoading} onClick={() => router.push('/login')}>ログイン</Button>
+        <Button isLoading={isLoading} onClick={() => router.push('/signin')}>ログイン</Button>
       )}
     </>
   )
