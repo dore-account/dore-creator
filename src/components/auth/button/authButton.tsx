@@ -5,15 +5,15 @@ import { useAuthContext } from 'src/hooks/auth/useAuthState'
 import { useRouter } from 'next/router'
 
 export const AuthButton: React.FC = () => {
-  const { isSignedIn, isLoading } = useAuthContext()
+  const { authState } = useAuthContext()
   const router = useRouter()
 
   return (
     <>
-      {isSignedIn ? (
-        <Button isLoading={isLoading} onClick={() => signOut(getAuth())}>ログアウト</Button>
+      {authState.isSignedIn ? (
+        <Button isLoading={authState.isLoading} onClick={() => signOut(getAuth())}>ログアウト</Button>
       ) : (
-        <Button isLoading={isLoading} onClick={() => router.push('/signin')}>ログイン</Button>
+        <Button isLoading={authState.isLoading} onClick={() => router.push('/signin')}>ログイン</Button>
       )}
     </>
   )
