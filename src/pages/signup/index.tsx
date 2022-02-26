@@ -11,7 +11,7 @@ SignupPage.getLayout = function getLayout(page: ReactElement) {
   return (
     <Layout
       headerProps={{
-        title: '',
+        title: '登録',
         rightComponent: (
           <ActionRouterTextButton path={'/signin'} pathName={'ログイン'} />
         ),
