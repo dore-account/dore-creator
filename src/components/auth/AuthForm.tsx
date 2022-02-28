@@ -1,28 +1,70 @@
-import React from 'react'
-
-import { firebase } from 'src/libs/firebase/index'
-import { Center, VStack } from '@chakra-ui/react'
-import FirebaseUIAuth from 'react-firebaseui-localized'
-import 'firebase/compat/auth'
+import { Stack, HStack, Spacer, Button, Divider, Text } from '@chakra-ui/react'
+import { useRouter } from 'next/router'
+import React, { createContext } from 'react'
+import { Email } from './input/Email'
+import { Password } from './input/Password'
 import { useAuthForm } from './useAuthForm'
 
-export const AuthForm: React.FC = () => {
-  const { uiConfig } = useAuthForm()
+type Props = {
+  type: string
+}
+
+export const AuthFormContext = createContext<ReturnType<typeof useAuthForm>>(
+  {} as ReturnType<typeof useAuthForm>
+)
+
+export const AuthForm: React.FC<Props> = ({ type }) => {
+  const handler = useAuthForm()
+  const router = useRouter()
 
   return (
-    <>
-      <Center w="full" h="full" flex="1">
-        <VStack as="form" direction="column" w="100" p="4" border="md">
-          <FirebaseUIAuth
-            lang="ja"
-            version="4.7.3"
-            config={uiConfig}
-            auth={firebase.auth()}
-            firebase={firebase}
-            rtl={undefined}
-          />
-        </VStack>
-      </Center>
-    </>
+    <AuthFormContext.Provider value={handler}>
+      <form
+        onSubmit={
+          type == 'signin'
+            ? handler.handleSubmit(handler.signIn)
+            : handler.handleSubmit(handler.signUp)
+        }
+      >
+        <Stack spacing='6'>
+          <Stack spacing='5'>
+            <Email />
+            <Password />
+          </Stack>
+          {type == 'signin' && (
+            <HStack justify='space-between'>
+              <Spacer />
+              <Button
+                type='button'
+                onClick={() => router.push('/sendPassword')}
+                variant='link'
+                colorScheme='blue'
+                size='sm'
+              >
+                パスワードを忘れた場合
+              </Button>
+            </HStack>
+          )}
+
+          <Stack spacing='6'>
+            <Button
+              type='submit'
+              colorScheme='blue'
+              disabled={!handler.isValid}
+              isLoading={handler.isSubmitting}
+            >
+              {type == 'signin' ? 'ログイン' : '登録'}
+            </Button>
+            <HStack>
+              <Divider />
+              <Text fontSize='sm' whiteSpace='nowrap' color='muted'>
+                または
+              </Text>
+              <Divider />
+            </HStack>
+          </Stack>
+        </Stack>
+      </form>
+    </AuthFormContext.Provider>
   )
 }

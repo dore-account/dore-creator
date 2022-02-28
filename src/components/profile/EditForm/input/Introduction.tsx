@@ -12,14 +12,14 @@ export const InputIntroduction = () => {
   const { register, errors } = useEditFormContext()
 
   return (
-    <FormControl isInvalid={errors.introduction}>
-      <FormLabel htmlFor="introduction">自己紹介</FormLabel>
+    <FormControl isInvalid={errors.introduction && true}>
+      <FormLabel htmlFor='introduction'>自己紹介</FormLabel>
       <Textarea
-        id="introduction"
+        id='introduction'
         {...register('introduction', {
           maxLength: { value: 250, message: '250文字以下で入力してください。' },
         })}
-        placeholder="東京の大学生です!好きな食べ物はカレーです!"
+        placeholder='東京の大学生です!好きな食べ物はカレーです!'
       />
       <FormErrorMessage>
         {errors.introduction && errors.introduction.message}{' '}

@@ -4,6 +4,7 @@ import {
   FormErrorMessage,
   RadioGroup,
   Radio,
+  Stack
 } from '@chakra-ui/react'
 import React from 'react'
 import { Controller } from 'react-hook-form'
@@ -13,24 +14,24 @@ export const InputGender = () => {
   const { errors, control } = useEditFormContext()
 
   return (
-    <FormControl isRequired isInvalid={errors.gender}>
-      <FormLabel htmlFor="gender">性別</FormLabel>
+    <FormControl isRequired isInvalid={errors.gender && true}>
+      <FormLabel htmlFor='gender'>性別</FormLabel>
       <Controller
-        name="gender"
+        name='gender'
         control={control}
         rules={{ required: 'どちらか選択してください。' }}
         render={({ field: { onChange, value, ref } }) => (
           <RadioGroup
-            id="gender"
+            id='gender'
             ref={ref}
-            name="gender"
-            isInline
-            spacing={6}
+            name='gender'
             onChange={onChange}
             value={value}
           >
-            <Radio value="MALE">男性</Radio>
-            <Radio value="FEMALE">女性</Radio>
+            <Stack spacing={5} direction='row'>
+              <Radio value='male'>男性</Radio>
+              <Radio value='woman'>女性</Radio>
+            </Stack>
           </RadioGroup>
         )}
       />

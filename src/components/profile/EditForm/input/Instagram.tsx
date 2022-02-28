@@ -15,17 +15,17 @@ export const InputInstagram = () => {
   const { register, errors } = useEditFormContext()
 
   return (
-    <FormControl isInvalid={errors.instagram}>
+    <FormControl isInvalid={errors.instagram && true}>
       <HStack>
-        <FormLabel htmlFor="instagram" w={170}>
+        <FormLabel htmlFor='instagram' w={170}>
           <HStack>
             <Icon as={BsInstagram} />
             <Text>Instagram</Text>
           </HStack>
         </FormLabel>
         <Input
-          id="instagram"
-          placeholder="ユーザーID"
+          id='instagram'
+          placeholder='ユーザーID'
           {...register('instagram')}
         />
       </HStack>

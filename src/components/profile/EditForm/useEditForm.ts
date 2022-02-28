@@ -1,23 +1,51 @@
-import { useState, ChangeEventHandler, useEffect, createContext } from 'react'
-import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
+import { useRouter } from 'next/router'
+import { useState, ChangeEventHandler } from 'react'
+import { SubmitHandler, useForm } from 'react-hook-form'
 import {
   useUploadUserImageMutation,
   useDeleteUserImageMutation,
   User,
+  GenderStatus,
+  useUpdateUserMutation,
 } from 'src/libs/graphql/graphql'
+
+type UserInput = {
+  name: string
+  introduction: string
+  gender: GenderStatus
+  birth_yy: number
+  birth_mm: number
+  birth_dd: number
+  twitter: string
+  instagram: string
+  tiktok: string
+}
 
 export const useEditForm = (initialUser: User) => {
   const [user, setUser] = useState<User>(initialUser)
   const [updateImage] = useUploadUserImageMutation()
   const [deleteImage] = useDeleteUserImageMutation()
+  const [updateUser] = useUpdateUserMutation()
   const {
     register,
     formState: { errors, isSubmitting, isValid },
     handleSubmit,
     control,
-  } = useForm({
+  } = useForm<UserInput>({
     mode: 'all',
+    defaultValues: {
+      name: user.name,
+      introduction: user.introduction,
+      gender: user.gender,
+      birth_yy: user.birthDayYy,
+      birth_mm: user.birthDayMm,
+      birth_dd: user.birthDayDd,
+      twitter: user.twitterLink,
+      instagram: user.instagramLink,
+      tiktok: user.tiktokLink,
+    },
   })
+  const router = useRouter()
 
   const handleImageInputChange: ChangeEventHandler<HTMLInputElement> = async (
     e
@@ -29,7 +57,6 @@ export const useEditForm = (initialUser: User) => {
 
     await updateImage({ variables: { input: { image: image } } }).then((d) => {
       const data = d.data?.uploadUserImage?.user
-
       if (data) setUser(data)
     })
   }
@@ -44,11 +71,34 @@ export const useEditForm = (initialUser: User) => {
     })
   }
 
-  const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    console.log(data);
-    console.log(JSON.stringify(data))
+  const onSubmit: SubmitHandler<UserInput> = async (data) => {
+    await updateUser({
+      variables: {
+        input: {
+          params: {
+            name: data.name,
+            gender: data.gender,
+            birthDayYy: data.birth_yy,
+            birthDayMm: data.birth_mm,
+            birthDayDd: data.birth_dd,
+            introduction: data.introduction,
+            twitterLink: data.twitter,
+            instagramLink: data.instagram,
+            tiktokLink: data.tiktok,
+          },
+        },
+      },
+    })
+      .then((d) => {
+        const newUser = d.data?.updateUser?.user
+        if (newUser) setUser(newUser)
+        console.log(user)
+        router.push('/profile')
+      })
+      .catch((e) => {
+        throw new Error('更新に失敗しました。')
+      })
   }
-
 
   return {
     user,

@@ -18,23 +18,26 @@ import { ArrowBackIconButton } from 'src/components/common/Button/arrowBackIconB
 
 type Props = {
   initialUser: User
+  isEdit: boolean
 }
 
 export const EditFormContext = createContext<ReturnType<typeof useEditForm>>(
   {} as ReturnType<typeof useEditForm>
 )
 
-export const EditForm: React.FC<Props> = ({ initialUser }) => {
+export const EditForm: React.FC<Props> = ({ initialUser, isEdit }) => {
   const handler = useEditForm(initialUser)
 
   return (
     <EditFormContext.Provider value={handler}>
       <form onSubmit={handler.handleSubmit}>
-        <Layout headerProps={{
-          title: 'DORE',
-          rightComponent: <EditFormButton />,
-          leftComponent: <ArrowBackIconButton />
-        }}>
+        <Layout
+          headerProps={{
+            title: 'DORE',
+            rightComponent: <EditFormButton />,
+            leftComponent: isEdit ? <ArrowBackIconButton /> : <></>,
+          }}
+        >
           <VStack p={5} spacing={5}>
             <InputImages />
             <InputName />

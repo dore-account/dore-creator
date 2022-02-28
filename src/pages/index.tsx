@@ -1,46 +1,25 @@
+import { VStack } from '@chakra-ui/react'
 import Link from 'next/link'
-import { GetServerSidePropsContext } from 'next/types'
 import { ReactElement } from 'react'
 import { AuthButton } from 'src/components/auth/button/authButton'
-import { Layout } from 'src/components/layout/layout'
-import styles from '../styles/Home.module.css'
+import { MainLayout } from 'src/components/layout/MainLayout'
 
 function Home() {
   return (
-    <div className={styles.container}>
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.tsx</code>
-        </p>
-
-        <div className={styles.grid}>
-          <Link href="/profile" >
-            <a className={styles.card}>
-              <h2>Documentation &rarr;</h2>
-              <p>Find in-depth information about Next.js features and API.</p>
-            </a>
-          </Link>
-
-          <Link href="/login">
-            <a className={styles.card}>
-              <h2>Learn &rarr;</h2>
-              <p>Learn about Next.js in an interactive course with quizzes!</p>
-            </a>
-          </Link>
-        </div>
-      </main>
-    </div>
+    <VStack>
+      <Link href='/profile'>
+        <a>profile</a>
+      </Link>
+      <Link href='/paymentmethod'>
+        <a>paymentmethod</a>
+      </Link>
+    </VStack>
   )
 }
 
 Home.getLayout = function getLayout(page: ReactElement) {
   return (
-    <Layout
+    <MainLayout
       headerProps={{
         title: 'home',
         rightComponent: <AuthButton />,
@@ -48,9 +27,8 @@ Home.getLayout = function getLayout(page: ReactElement) {
       }}
     >
       {page}
-    </Layout>
+    </MainLayout>
   )
 }
-
 
 export default Home

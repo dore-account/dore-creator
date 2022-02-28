@@ -11,11 +11,11 @@ export const InputName = () => {
   const { register, errors } = useEditFormContext()
 
   return (
-    <FormControl isRequired isInvalid={errors.name}>
-      <FormLabel htmlFor="name">名前</FormLabel>
+    <FormControl isInvalid={errors.name && true}>
+      <FormLabel htmlFor='name'>名前</FormLabel>
       <Input
-        id="name"
-        placeholder="山田 太朗"
+        id='name'
+        placeholder='山田 太朗'
         {...register('name', {
           required: '入力必須です',
         })}

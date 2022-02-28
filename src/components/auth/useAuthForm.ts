@@ -1,46 +1,43 @@
-import { EmailAuthProvider, GoogleAuthProvider } from 'firebase/auth'
-import { auth } from 'firebaseui'
-import 'firebase/compat/auth'
-import { firebase, config } from 'src/libs/firebase'
 import { useRouter } from 'next/router'
+import { useContext } from 'react'
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
+import { useAuthContext } from 'src/hooks/auth/useAuthState'
+import { AuthFormContext } from './AuthForm'
+
+export const useAuthFormContext = () => useContext(AuthFormContext)
 
 export const useAuthForm = () => {
-  firebase.initializeApp(config)
+  const {
+    register,
+    formState: { errors, isSubmitting, isValid },
+    handleSubmit,
+  } = useForm({ mode: 'all' })
+  const { signInWithEmail, signUpWithEmail, passwordReset } = useAuthContext()
   const router = useRouter()
 
-  const uiConfig: auth.Config = {
-    callbacks: {
-      signInSuccessWithAuthResult: function(authResult, redirectUrl) {
-        // isNewUserがtrueだったらユーザー登録ページに遷移させたい
-        var isNewUser = authResult.additionalUserInfo.isNewUser;
-        if (isNewUser) {
-          router.push('/profile/register')
-        } else {
-          router.push('/')
-        }
-        return true;
-      },
-    },
-    signInOptions: [
-      {
-        provider: EmailAuthProvider.PROVIDER_ID,
-        requireDisplayName: false,
-        fullLabel: 'メール',
-        disableSignUp: {
-          status: true,
-        },
-      },
-      {
-        provider: GoogleAuthProvider.PROVIDER_ID,
-        fullLabel: 'Google',
-      },
-      // TwitterAuthProvider.PROVIDER_ID,
-    ],
-    // 利用規約url.
-    tosUrl: '<your-tos-url>',
-    // プライバシーポリシーurl.
-    privacyPolicyUrl: '<your-privacy-policy-url>',
+  const signIn: SubmitHandler<FieldValues> = async (data) => {
+    const success = await signInWithEmail(data.email, data.password)
+    if (success) router.push('/')
   }
 
-  return { uiConfig }
+  const signUp: SubmitHandler<FieldValues> = async (data) => {
+    const success = await signUpWithEmail(data.email, data.password)
+    if (success) router.push('/profile/register')
+  }
+
+  const sendPasswordReset: SubmitHandler<FieldValues> = async (data) => {
+    const success = await passwordReset(data.email)
+    if (success) router.back()
+  }
+
+  return {
+    register,
+    errors,
+    isSubmitting,
+    isValid,
+    handleSubmit,
+    signIn,
+    signUp,
+    sendPasswordReset,
+  }
 }

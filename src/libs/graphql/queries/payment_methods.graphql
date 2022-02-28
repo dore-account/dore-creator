@@ -1,0 +1,8 @@
+query PaymentMethods {
+  paymentMethods {
+    id
+    brand
+    expMonth
+    expYear
+  }
+}
