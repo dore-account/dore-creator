@@ -1,0 +1,10 @@
+query Product($input: ID!) {
+  product(id: $input) {
+    id
+    name
+    description
+    price
+    status
+    stockQuantity
+  }
+}
