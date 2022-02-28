@@ -15,7 +15,7 @@ export const InputInstagram = () => {
   const { register, errors } = useEditFormContext()
 
   return (
-    <FormControl isInvalid={errors.instagram}>
+    <FormControl isInvalid={errors.instagram && true}>
       <HStack>
         <FormLabel htmlFor='instagram' w={170}>
           <HStack>

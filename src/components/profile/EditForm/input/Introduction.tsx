@@ -12,7 +12,7 @@ export const InputIntroduction = () => {
   const { register, errors } = useEditFormContext()
 
   return (
-    <FormControl isInvalid={errors.introduction}>
+    <FormControl isInvalid={errors.introduction && true}>
       <FormLabel htmlFor='introduction'>自己紹介</FormLabel>
       <Textarea
         id='introduction'

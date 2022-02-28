@@ -15,7 +15,7 @@ export const InputTiktok = () => {
   const { register, errors } = useEditFormContext()
 
   return (
-    <FormControl isInvalid={errors.tiktok}>
+    <FormControl isInvalid={errors.tiktok && true}>
       <HStack>
         <FormLabel htmlFor='tiktok' w={170}>
           <HStack>

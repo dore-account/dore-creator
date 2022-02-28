@@ -15,7 +15,7 @@ export const InputTwitter = () => {
   const { register, errors } = useEditFormContext()
 
   return (
-    <FormControl isInvalid={errors.twitter}>
+    <FormControl isInvalid={errors.twitter && true}>
       <HStack>
         <FormLabel htmlFor='twitter' w={170}>
           <HStack>

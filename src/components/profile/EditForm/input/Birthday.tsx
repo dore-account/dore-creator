@@ -15,7 +15,7 @@ export const InputBirthday = () => {
   return (
     <FormControl
       isRequired
-      isInvalid={errors.birth_yy || errors.birth_mm || errors.birth_dd}
+      isInvalid={(errors.birth_yy || errors.birth_mm || errors.birth_dd) && true}
     >
       <FormLabel htmlFor='birthday'>生年月日</FormLabel>
       <HStack>

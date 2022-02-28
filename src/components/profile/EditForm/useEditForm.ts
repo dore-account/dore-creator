@@ -4,7 +4,20 @@ import {
   useUploadUserImageMutation,
   useDeleteUserImageMutation,
   User,
+  GenderStatus,
 } from 'src/libs/graphql/graphql'
+
+type UserInput = {
+  name: string
+  introduction: string
+  gender: GenderStatus
+  birth_yy: number
+  birth_mm: number
+  birth_dd: number
+  twitter: string
+  instagram: string
+  tiktok: string
+}
 
 export const useEditForm = (initialUser: User) => {
   const [user, setUser] = useState<User>(initialUser)
@@ -15,10 +28,23 @@ export const useEditForm = (initialUser: User) => {
     formState: { errors, isSubmitting, isValid },
     handleSubmit,
     control,
-  } = useForm({
+  } = useForm<UserInput>({
     mode: 'all',
+    defaultValues: {
+      name: user.name,
+      introduction: user.introduction,
+      gender: user.gender,
+      birth_yy: user.birthDayYy,
+      birth_mm: user.birthDayMm,
+      birth_dd: user.birthDayDd,
+      twitter: user.twitterLink,
+      instagram: user.instagramLink,
+      tiktok: user.tiktokLink,
+    },
   })
 
+  console.log(user.gender);
+  
   const handleImageInputChange: ChangeEventHandler<HTMLInputElement> = async (
     e
   ) => {
@@ -29,7 +55,6 @@ export const useEditForm = (initialUser: User) => {
 
     await updateImage({ variables: { input: { image: image } } }).then((d) => {
       const data = d.data?.uploadUserImage?.user
-
       if (data) setUser(data)
     })
   }

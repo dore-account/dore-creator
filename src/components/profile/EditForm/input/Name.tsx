@@ -11,7 +11,7 @@ export const InputName = () => {
   const { register, errors } = useEditFormContext()
 
   return (
-    <FormControl isRequired isInvalid={errors.name}>
+    <FormControl isInvalid={errors.name && true}>
       <FormLabel htmlFor='name'>名前</FormLabel>
       <Input
         id='name'
