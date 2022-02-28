@@ -2,7 +2,7 @@ import { VStack } from '@chakra-ui/react'
 import Link from 'next/link'
 import { ReactElement } from 'react'
 import { AuthButton } from 'src/components/auth/button/authButton'
-import { Layout } from 'src/components/layout/layout'
+import { MainLayout } from 'src/components/layout/MainLayout'
 
 function Home() {
   return (
@@ -19,7 +19,7 @@ function Home() {
 
 Home.getLayout = function getLayout(page: ReactElement) {
   return (
-    <Layout
+    <MainLayout
       headerProps={{
         title: 'home',
         rightComponent: <AuthButton />,
@@ -27,7 +27,7 @@ Home.getLayout = function getLayout(page: ReactElement) {
       }}
     >
       {page}
-    </Layout>
+    </MainLayout>
   )
 }
 
