@@ -1,0 +1,22 @@
+mutation UpdateUser($input: UpdateUserInput!) {
+  updateUser(input: $input) {
+    user {
+      id
+      slug
+      name
+      introduction
+      gender
+      age
+      birthDayYy
+      birthDayMm
+      birthDayDd
+      twitterLink
+      instagramLink
+      tiktokLink
+      images {
+        id
+        path
+      }
+    }
+  }
+}
