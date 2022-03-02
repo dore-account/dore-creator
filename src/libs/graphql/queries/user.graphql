@@ -1,5 +1,5 @@
-query User {
-  user {
+query User($input: ID!) {
+  user(id: $input) {
     id
     slug
     name

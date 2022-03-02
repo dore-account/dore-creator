@@ -1,10 +1,10 @@
 import React from 'react'
 import { Loader } from 'src/components/common/loader'
 import { EditForm } from 'src/components/profile/EditForm/EditForm'
-import { useUserQuery } from 'src/libs/graphql/graphql'
+import { useCurrentUserQuery } from 'src/libs/graphql/graphql'
 
 export const EditProfile = () => {
-  const { data } = useUserQuery()
+  const { data } = useCurrentUserQuery()
 
   if (!data) return <Loader />
 
