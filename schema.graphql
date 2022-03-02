@@ -168,6 +168,7 @@ type PurchaseVideo {
 
 type Query {
   allPurchases: [PurchaseVideo!]!
+  creator(id: ID): Creator!
   creators: [Creator!]!
   paymentMethods: [PaymentMethod!]!
   product(id: ID!): Product!
@@ -175,6 +176,7 @@ type Query {
   purchase(id: ID!): PurchaseVideo!
   setupPaymentMethod: Stripe!
   user(id: ID): User!
+  users: [User!]!
 }
 
 type Stripe {

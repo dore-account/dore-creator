@@ -206,6 +206,7 @@ export type PurchaseVideo = {
 export type Query = {
   __typename?: 'Query';
   allPurchases: Array<PurchaseVideo>;
+  creator: Creator;
   creators: Array<Creator>;
   paymentMethods: Array<PaymentMethod>;
   product: Product;
@@ -213,6 +214,12 @@ export type Query = {
   purchase: PurchaseVideo;
   setupPaymentMethod: Stripe;
   user: User;
+  users: Array<User>;
+};
+
+
+export type QueryCreatorArgs = {
+  id?: InputMaybe<Scalars['ID']>;
 };
 
 
@@ -405,14 +412,19 @@ export type UploadUserImageMutationVariables = Exact<{
 
 export type UploadUserImageMutation = { __typename?: 'Mutation', uploadUserImage?: { __typename?: 'UploadUserImagePayload', user: { __typename?: 'User', id: string, slug: string, name: string, introduction: string, gender: GenderStatus, age: number, birthDayYy: number, birthDayMm: number, birthDayDd: number, twitterLink: string, instagramLink: string, tiktokLink: string, images: Array<{ __typename?: 'UserImage', id: string, path: string }>, info?: { __typename?: 'UserInfo', id: string, stan: string, userId: string } | null } } | null };
 
+export type CreatorQueryVariables = Exact<{
+  input: Scalars['ID'];
+}>;
+
+
+export type CreatorQuery = { __typename?: 'Query', creator: { __typename?: 'Creator', id: string, user: { __typename?: 'User', id: string, slug: string, name: string, introduction: string, gender: GenderStatus, age: number, birthDayYy: number, birthDayMm: number, birthDayDd: number, twitterLink: string, instagramLink: string, tiktokLink: string, images: Array<{ __typename?: 'UserImage', id: string, path: string }> }, info?: { __typename?: 'CreatorInfo', belongs: string } | null, categories: Array<{ __typename?: 'CreatorCategory', id: string, name: string }>, products?: Array<{ __typename?: 'Product', id: string, name: string, status: ProductStatus }> | null } };
+
 export type CreatorsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type CreatorsQuery = { __typename?: 'Query', creators: Array<{ __typename?: 'Creator', id: string }> };
+export type CreatorsQuery = { __typename?: 'Query', creators: Array<{ __typename?: 'Creator', id: string, user: { __typename?: 'User', slug: string, name: string, gender: GenderStatus, images: Array<{ __typename?: 'UserImage', id: string }> }, categories: Array<{ __typename?: 'CreatorCategory', id: string, name: string }>, products?: Array<{ __typename?: 'Product', id: string, name: string, status: ProductStatus }> | null }> };
 
-export type CurrentUserQueryVariables = Exact<{
-  input: Scalars['ID'];
-}>;
+export type CurrentUserQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type CurrentUserQuery = { __typename?: 'Query', user: { __typename?: 'User', id: string, slug: string, name: string, introduction: string, gender: GenderStatus, age: number, birthDayYy: number, birthDayMm: number, birthDayDd: number, twitterLink: string, instagramLink: string, tiktokLink: string, images: Array<{ __typename?: 'UserImage', id: string, path: string }>, info?: { __typename?: 'UserInfo', id: string, stan: string, userId: string } | null } };
@@ -439,10 +451,17 @@ export type SetupPaymentMethodQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type SetupPaymentMethodQuery = { __typename?: 'Query', setupPaymentMethod: { __typename?: 'Stripe', clientSecret: string } };
 
-export type UserQueryVariables = Exact<{ [key: string]: never; }>;
+export type UserQueryVariables = Exact<{
+  input: Scalars['ID'];
+}>;
 
 
 export type UserQuery = { __typename?: 'Query', user: { __typename?: 'User', id: string, slug: string, name: string, introduction: string, gender: GenderStatus, age: number, birthDayYy: number, birthDayMm: number, birthDayDd: number, twitterLink: string, instagramLink: string, tiktokLink: string, images: Array<{ __typename?: 'UserImage', id: string, path: string }>, info?: { __typename?: 'UserInfo', id: string, stan: string, userId: string } | null } };
+
+export type UsersIdSlugQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type UsersIdSlugQuery = { __typename?: 'Query', users: Array<{ __typename?: 'User', id: string, slug: string }> };
 
 
 export const DeleteUserImageDocument = gql`
@@ -605,10 +624,92 @@ export function useUploadUserImageMutation(baseOptions?: Apollo.MutationHookOpti
 export type UploadUserImageMutationHookResult = ReturnType<typeof useUploadUserImageMutation>;
 export type UploadUserImageMutationResult = Apollo.MutationResult<UploadUserImageMutation>;
 export type UploadUserImageMutationOptions = Apollo.BaseMutationOptions<UploadUserImageMutation, UploadUserImageMutationVariables>;
+export const CreatorDocument = gql`
+    query Creator($input: ID!) {
+  creator(id: $input) {
+    id
+    user {
+      id
+      slug
+      name
+      introduction
+      gender
+      age
+      birthDayYy
+      birthDayMm
+      birthDayDd
+      twitterLink
+      instagramLink
+      tiktokLink
+      images {
+        id
+        path
+      }
+    }
+    info {
+      belongs
+    }
+    categories {
+      id
+      name
+    }
+    products {
+      id
+      name
+      status
+    }
+  }
+}
+    `;
+
+/**
+ * __useCreatorQuery__
+ *
+ * To run a query within a React component, call `useCreatorQuery` and pass it any options that fit your needs.
+ * When your component renders, `useCreatorQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useCreatorQuery({
+ *   variables: {
+ *      input: // value for 'input'
+ *   },
+ * });
+ */
+export function useCreatorQuery(baseOptions: Apollo.QueryHookOptions<CreatorQuery, CreatorQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<CreatorQuery, CreatorQueryVariables>(CreatorDocument, options);
+      }
+export function useCreatorLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<CreatorQuery, CreatorQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<CreatorQuery, CreatorQueryVariables>(CreatorDocument, options);
+        }
+export type CreatorQueryHookResult = ReturnType<typeof useCreatorQuery>;
+export type CreatorLazyQueryHookResult = ReturnType<typeof useCreatorLazyQuery>;
+export type CreatorQueryResult = Apollo.QueryResult<CreatorQuery, CreatorQueryVariables>;
 export const CreatorsDocument = gql`
     query Creators {
   creators {
     id
+    user {
+      slug
+      name
+      gender
+      images {
+        id
+      }
+    }
+    categories {
+      id
+      name
+    }
+    products {
+      id
+      name
+      status
+    }
   }
 }
     `;
@@ -640,8 +741,8 @@ export type CreatorsQueryHookResult = ReturnType<typeof useCreatorsQuery>;
 export type CreatorsLazyQueryHookResult = ReturnType<typeof useCreatorsLazyQuery>;
 export type CreatorsQueryResult = Apollo.QueryResult<CreatorsQuery, CreatorsQueryVariables>;
 export const CurrentUserDocument = gql`
-    query CurrentUser($input: ID!) {
-  user(id: $input) {
+    query CurrentUser {
+  user {
     id
     slug
     name
@@ -679,11 +780,10 @@ export const CurrentUserDocument = gql`
  * @example
  * const { data, loading, error } = useCurrentUserQuery({
  *   variables: {
- *      input: // value for 'input'
  *   },
  * });
  */
-export function useCurrentUserQuery(baseOptions: Apollo.QueryHookOptions<CurrentUserQuery, CurrentUserQueryVariables>) {
+export function useCurrentUserQuery(baseOptions?: Apollo.QueryHookOptions<CurrentUserQuery, CurrentUserQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
         return Apollo.useQuery<CurrentUserQuery, CurrentUserQueryVariables>(CurrentUserDocument, options);
       }
@@ -840,8 +940,8 @@ export type SetupPaymentMethodQueryHookResult = ReturnType<typeof useSetupPaymen
 export type SetupPaymentMethodLazyQueryHookResult = ReturnType<typeof useSetupPaymentMethodLazyQuery>;
 export type SetupPaymentMethodQueryResult = Apollo.QueryResult<SetupPaymentMethodQuery, SetupPaymentMethodQueryVariables>;
 export const UserDocument = gql`
-    query User {
-  user {
+    query User($input: ID!) {
+  user(id: $input) {
     id
     slug
     name
@@ -879,10 +979,11 @@ export const UserDocument = gql`
  * @example
  * const { data, loading, error } = useUserQuery({
  *   variables: {
+ *      input: // value for 'input'
  *   },
  * });
  */
-export function useUserQuery(baseOptions?: Apollo.QueryHookOptions<UserQuery, UserQueryVariables>) {
+export function useUserQuery(baseOptions: Apollo.QueryHookOptions<UserQuery, UserQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
         return Apollo.useQuery<UserQuery, UserQueryVariables>(UserDocument, options);
       }
@@ -893,3 +994,38 @@ export function useUserLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<UserQ
 export type UserQueryHookResult = ReturnType<typeof useUserQuery>;
 export type UserLazyQueryHookResult = ReturnType<typeof useUserLazyQuery>;
 export type UserQueryResult = Apollo.QueryResult<UserQuery, UserQueryVariables>;
+export const UsersIdSlugDocument = gql`
+    query UsersIdSlug {
+  users {
+    id
+    slug
+  }
+}
+    `;
+
+/**
+ * __useUsersIdSlugQuery__
+ *
+ * To run a query within a React component, call `useUsersIdSlugQuery` and pass it any options that fit your needs.
+ * When your component renders, `useUsersIdSlugQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useUsersIdSlugQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useUsersIdSlugQuery(baseOptions?: Apollo.QueryHookOptions<UsersIdSlugQuery, UsersIdSlugQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<UsersIdSlugQuery, UsersIdSlugQueryVariables>(UsersIdSlugDocument, options);
+      }
+export function useUsersIdSlugLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<UsersIdSlugQuery, UsersIdSlugQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<UsersIdSlugQuery, UsersIdSlugQueryVariables>(UsersIdSlugDocument, options);
+        }
+export type UsersIdSlugQueryHookResult = ReturnType<typeof useUsersIdSlugQuery>;
+export type UsersIdSlugLazyQueryHookResult = ReturnType<typeof useUsersIdSlugLazyQuery>;
+export type UsersIdSlugQueryResult = Apollo.QueryResult<UsersIdSlugQuery, UsersIdSlugQueryVariables>;

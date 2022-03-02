@@ -1,5 +1,22 @@
 query Creators {
   creators {
     id
+    user {
+      slug
+      name
+      gender
+      images {
+        id
+      }
+    }
+    categories {
+      id
+      name
+    }
+    products {
+      id
+      name
+      status
+    }
   }
 }
