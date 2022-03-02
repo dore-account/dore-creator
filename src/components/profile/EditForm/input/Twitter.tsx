@@ -25,13 +25,8 @@ export const InputTwitter = () => {
         </FormLabel>
         <Input
           id='twitter'
-          placeholder='@ユーザーID'
-          {...register('twitter', {
-            pattern: {
-              value: /@[\w\-._]/,
-              message: '@マークから入力してください。',
-            },
-          })}
+          placeholder='ユーザーIDを入力'
+          {...register('twitter')}
         />
       </HStack>
 

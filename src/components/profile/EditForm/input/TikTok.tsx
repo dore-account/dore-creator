@@ -25,7 +25,7 @@ export const InputTiktok = () => {
         </FormLabel>
         <Input
           id='tiktok'
-          placeholder='@ユーザーID'
+          placeholder='@ユーザーIDを入力'
           {...register('tiktok', {
             pattern: {
               value: /@[\w\-._]/,
