@@ -1,0 +1,35 @@
+query Creator($input: ID!) {
+  creator(id: $input) {
+    id
+    user {
+      id
+      slug
+      name
+      introduction
+      gender
+      age
+      birthDayYy
+      birthDayMm
+      birthDayDd
+      twitterLink
+      instagramLink
+      tiktokLink
+      images {
+        id
+        path
+      }
+    }
+    info {
+      belongs
+		}
+    categories {
+      id
+      name
+    }
+    products {
+      id
+      name
+      status
+    }
+  }
+}
