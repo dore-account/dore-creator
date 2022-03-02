@@ -1,5 +1,5 @@
 import React from 'react'
-import { Center, Image, ImageProps, Skeleton } from '@chakra-ui/react'
+import { Center, Image, ImageProps, SkeletonCircle } from '@chakra-ui/react'
 
 export const RoundImage: React.FC<ImageProps> = ({ src, alt }) => {
   return (
@@ -11,7 +11,7 @@ export const RoundImage: React.FC<ImageProps> = ({ src, alt }) => {
         boxSize='150px'
         src={src}
         alt={alt}
-        fallback={<Skeleton />}
+        fallback={<SkeletonCircle size="150" />}
       />
     </Center>
   )
