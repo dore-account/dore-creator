@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react'
-import { ActionRouterTextButton } from 'src/components/common/Button/actionRouterTextButton'
+import { ActionRouterTextButton } from 'src/components/common/Button/ActionRouterTextButton'
 import { Layout } from 'src/components/layout/layout'
 import { Signup } from 'src/components/pages/auth/signup/Signup'
 
