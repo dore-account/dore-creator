@@ -78,9 +78,9 @@ export const useEditForm = (initialUser: User) => {
           params: {
             name: data.name,
             gender: data.gender,
-            birthDayYy: data.birth_yy,
-            birthDayMm: data.birth_mm,
-            birthDayDd: data.birth_dd,
+            birthDayYy: +data.birth_yy,
+            birthDayMm: +data.birth_mm,
+            birthDayDd: +data.birth_dd,
             introduction: data.introduction,
             twitterLink: data.twitter,
             instagramLink: data.instagram,
@@ -92,10 +92,10 @@ export const useEditForm = (initialUser: User) => {
       .then((d) => {
         const newUser = d.data?.updateUser?.user
         if (newUser) setUser(newUser)
-        console.log(user)
         router.push('/profile')
       })
       .catch((e) => {
+        console.log(e)
         throw new Error('更新に失敗しました。')
       })
   }
