@@ -22,6 +22,7 @@ type Props = {
 
 export const Product: React.FC<Props> = ({ productData }) => {
   const product = productData.product
+  const imagePath = `${process.env.NEXT_PUBLIC_BACKEND_URL}${product.image.path}`
 
   return (
     <Container maxW='7xl' h='full'>
@@ -32,10 +33,9 @@ export const Product: React.FC<Props> = ({ productData }) => {
       >
         <AspectRatio ratio={4 / 3}>
           <Image
-            src={
-              'https://images.unsplash.com/photo-1596516109370-29001ec8ec36?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyODE1MDl8MHwxfGFsbHx8fHx8fHx8fDE2Mzg5MzY2MzE&ixlib=rb-1.2.1&q=80&w=1080'
-            }
+            src={imagePath}
             alt={product.name}
+            objectFit='cover'
             draggable='false'
             fallback={<Skeleton />}
             borderRadius={useBreakpointValue({ base: 'md', md: 'xl' })}
@@ -44,7 +44,7 @@ export const Product: React.FC<Props> = ({ productData }) => {
         <Stack justify='space-between'>
           <Stack spacing={{ base: 4, lg: 6 }}>
             <Box as='header'>
-              <Heading fontWeight={400} fontSize={{ base: '4xl', lg: '5xl' }}>
+              <Heading fontWeight={600} fontSize={{ base: '3xl', lg: '4xl' }}>
                 {product.name}
               </Heading>
             </Box>
@@ -72,18 +72,23 @@ export const Product: React.FC<Props> = ({ productData }) => {
               <Text fontSize={'xl'}>{product.description}</Text>
             </Box>
           </Stack>
-          <Spacer />
-          <Button
-            type='button'
-            colorScheme='blue'
-            w='full'
-            mt='8'
-            size='lg'
-            py='7'
-            onClick={() => console.log('tap')}
+          <Box
+            bottom={5}
+            right={5}
+            left={5}
+            position={{ base: 'fixed', lg: 'unset' }}
           >
-            購入
-          </Button>
+            <Button
+              type='button'
+              colorScheme='blue'
+              w='full'
+              size='lg'
+              py='7'
+              onClick={() => console.log('tap')}
+            >
+              購入
+            </Button>
+          </Box>
         </Stack>
       </SimpleGrid>
     </Container>
