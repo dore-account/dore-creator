@@ -1,5 +1,5 @@
 import React from 'react'
-import { Flex, Text, Box, Center, Stack, Icon } from '@chakra-ui/react'
+import { Flex, Box, Center, Icon } from '@chakra-ui/react'
 import {
   MdOutlineSwipe,
   MdSearch,
@@ -9,28 +9,14 @@ import { AiOutlineMessage } from 'react-icons/ai'
 import { useRouter } from 'next/router'
 
 const BOTTOM_NAVIGATION_ICONS = [
-  MdOutlineSwipe,
-  MdSearch,
-  AiOutlineMessage,
-  MdOutlineAccountCircle,
-]
-
-const BOTTOM_NAVIGATION_PATHS = [
-  '/',
-  '/search',
-  '/products',
-  '/mypage'
+  { icon: MdOutlineSwipe, path: '/' },
+  { icon: MdSearch, path: '/search' },
+  { icon: AiOutlineMessage, path: '/products' },
+  { icon: MdOutlineAccountCircle, path: '/mypage' },
 ]
 
 export const BottomNavBar = () => {
-  const [value, setValue] = React.useState(0)
   const router = useRouter()
-
-  const onSelected = (v: number) => {
-    const path = BOTTOM_NAVIGATION_PATHS[v]
-    setValue(v)
-    router.push(path)
-  }
 
   return (
     <Flex
@@ -46,14 +32,14 @@ export const BottomNavBar = () => {
       position='fixed'
       justifyContent='space-around'
     >
-      {BOTTOM_NAVIGATION_ICONS.map((icon, i) => (
-        <Box key={i} as='button' px={4} onClick={() => onSelected(i)}>
+      {BOTTOM_NAVIGATION_ICONS.map(({ icon, path }, i) => (
+        <Box key={i} as='button' px={4} onClick={() => router.push(path)}>
           <Center h='full'>
             <Icon
-              w={value === i ? '2em' : '1.5em'}
-              h={value === i ? '2em' : '1.5em'}
+              w={router.pathname === path ? '2em' : '1.5em'}
+              h={router.pathname === path ? '2em' : '1.5em'}
               as={icon}
-              color={value === i ? 'blue.400' : 'gray'}
+              color={router.pathname === path ? 'blue.400' : 'gray'}
             />
           </Center>
         </Box>

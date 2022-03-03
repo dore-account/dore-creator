@@ -15,4 +15,3 @@ export const MainLayout: React.FC<{ headerProps: HeaderProps }> = ({
     </Flex>
   )
 }
-
