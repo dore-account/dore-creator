@@ -29,23 +29,17 @@ type Props = {
 
 export const Profile: React.FC<Props> = ({ userData }) => {
   const user = userData.user
-  const imagePath = user.images.length >= 1 ? user.images.shift()?.path : ''
+  const imagePath = `${process.env.NEXT_PUBLIC_BACKEND_URL}${user.images[0].path}`
 
   return (
     <Container maxW='7xl' h='full' py={8}>
       <Stack spacing={6}>
-        <RoundImage
-          src={
-            imagePath
-            // 'https://images.unsplash.com/photo-1596516109370-29001ec8ec36?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyODE1MDl8MHwxfGFsbHx8fHx8fHx8fDE2Mzg5MzY2MzE&ixlib=rb-1.2.1&q=80&w=1080'
-          }
-        />
+        <RoundImage src={imagePath || ''} />
         <Box align='center'>
           <Text fontSize={'2xl'} fontWeight={500} fontFamily={'body'}>
             {user.name}
           </Text>
           <Text color={'gray.500'}>{`@${user.slug}`}</Text>
-          
         </Box>
 
         <SNSButtonGroup

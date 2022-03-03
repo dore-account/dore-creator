@@ -13,12 +13,12 @@ export const Account: React.FC = () => {
 
   if (!data) return <Loader />
   const user = data.user
-  const imagePath = user.images.length >= 1 ? user.images.shift()?.path : ''
+  const imagePath = `${process.env.NEXT_PUBLIC_BACKEND_URL}${user.images[0].path}`
 
   return (
     <Container maxW='7xl' h='full' py={8}>
       <Stack spacing={6}>
-        <RoundImage src={imagePath} />
+        <RoundImage src={imagePath || ''} />
         <Box align='center'>
           <Text fontSize={'2xl'} fontWeight={500} fontFamily={'body'}>
             {user.name}
