@@ -22,6 +22,10 @@ import {
   CategoryItem,
   CategoryList,
 } from 'src/components/profile/button/Category'
+import {
+  ProductCardGridList,
+  ProductCardItem,
+} from 'src/components/product/ProductCard'
 
 type Props = {
   creatorData: CreatorQuery
@@ -31,12 +35,13 @@ export const CreatorProfile: React.FC<Props> = ({ creatorData }) => {
   const user = creatorData.creator.user
   const creator = creatorData.creator.info
   const categories = creatorData.creator.categories
-  const imagePath = user.images.length >= 1 ? user.images.shift()?.path : ''
+  const products = creatorData.creator.products
+  const imagePath = `${process.env.NEXT_PUBLIC_BACKEND_URL}${user.images[0].path}`
 
   return (
     <Container maxW='7xl' h='full' py={8}>
       <Stack spacing={6}>
-        <RoundImage src={imagePath} />
+        <RoundImage src={imagePath || ''} />
         <Box align='center'>
           <Text fontSize={'2xl'} fontWeight={500} fontFamily={'body'}>
             {user.name}
@@ -74,13 +79,28 @@ export const CreatorProfile: React.FC<Props> = ({ creatorData }) => {
           </HStack>
           <HStack>
             <Icon as={MdOutlineTransgender} />
-            <Text>{user.gender}</Text>
+            <Text>{user.gender === 'male' ? '男性' : '女性'}</Text>
           </HStack>
           <HStack>
             <Icon as={MdOutlineBusiness} />
             <Text>{creator?.belongs || ''}</Text>
           </HStack>
         </SimpleGrid>
+        <Box>
+          <Box as='label' fontSize={'lg'} fontWeight={600}>
+            出品商品
+          </Box>
+          <ProductCardGridList>
+            {products?.map((product) => (
+              <ProductCardItem
+                key={product.id}
+                name={product.name}
+                imageURL={`${process.env.NEXT_PUBLIC_BACKEND_URL}${product.image.path}`}
+                price={product.price}
+              />
+            ))}
+          </ProductCardGridList>
+        </Box>
       </Stack>
     </Container>
   )
