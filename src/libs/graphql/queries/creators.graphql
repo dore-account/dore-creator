@@ -7,16 +7,11 @@ query Creators {
       gender
       images {
         id
+        path
       }
     }
     categories {
-      id
       name
-    }
-    products {
-      id
-      name
-      status
     }
   }
 }

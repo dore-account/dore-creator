@@ -30,6 +30,11 @@ query Creator($input: ID!) {
       id
       name
       status
+      price
+      image {
+        id
+        path
+      }
     }
   }
 }
