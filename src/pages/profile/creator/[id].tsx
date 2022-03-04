@@ -6,27 +6,27 @@ import {
 import React, { ReactElement } from 'react'
 import { ArrowBackIconButton } from 'src/components/common/Button/ArrowBackIconButton'
 import { Layout } from 'src/components/layout/layout'
-import { Profile } from 'src/components/pages/profile/Profile/Profile'
+import { CreatorProfile } from 'src/components/pages/profile/Profile/CreatorProfile'
 import initApollo from 'src/libs/apollo/apolloClient'
 import {
-  UserDocument,
-  UserQuery,
-  UserQueryVariables,
+  CreatorDocument,
+  CreatorQuery,
+  CreatorQueryVariables,
   UsersIdSlugDocument,
   UsersIdSlugQuery,
 } from 'src/libs/graphql/graphql'
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>
 
-export default function ProfilePage({ data }: Props) {
-  return <Profile userData={data} />
+export default function CreatorProfilePage({ data }: Props) {
+  return <CreatorProfile creatorData={data} />
 }
 
-ProfilePage.getLayout = function getLayout(page: ReactElement) {
+CreatorProfilePage.getLayout = function getLayout(page: ReactElement) {
   return (
     <Layout
       headerProps={{
-        title: 'home',
+        title: 'クリエイター',
         rightComponent: <></>,
         leftComponent: <ArrowBackIconButton />,
       }}
@@ -50,7 +50,7 @@ export const getStaticPaths = async (ctx: GetServerSidePropsContext) => {
 }
 
 export const getStaticProps: GetStaticProps<{
-  data: UserQuery
+  data: CreatorQuery
 }> = async (ctx) => {
   const client = initApollo(null)
   const id = ctx.params?.id as string
@@ -61,8 +61,8 @@ export const getStaticProps: GetStaticProps<{
   }
 
   try {
-    const { data } = await client.query<UserQuery, UserQueryVariables>({
-      query: UserDocument,
+    const { data } = await client.query<CreatorQuery, CreatorQueryVariables>({
+      query: CreatorDocument,
       variables: { input: id },
     })
     return { props: { data } }

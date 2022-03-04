@@ -14,7 +14,7 @@ import {
 import { EditFormButton } from './button'
 import { useEditForm } from './useEditForm'
 import { Layout } from 'src/components/layout/layout'
-import { ArrowBackIconButton } from 'src/components/common/Button/arrowBackIconButton'
+import { ArrowBackIconButton } from 'src/components/common/Button/ArrowBackIconButton'
 
 type Props = {
   initialUser: User

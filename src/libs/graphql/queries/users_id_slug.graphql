@@ -1,0 +1,6 @@
+query UsersIdSlug {
+  users {
+    id
+    slug
+  }
+}

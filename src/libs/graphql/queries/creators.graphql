@@ -1,5 +1,17 @@
 query Creators {
   creators {
     id
+    user {
+      slug
+      name
+      gender
+      images {
+        id
+        path
+      }
+    }
+    categories {
+      name
+    }
   }
 }

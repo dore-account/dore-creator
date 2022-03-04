@@ -1,11 +1,9 @@
 import React, { ReactElement } from 'react'
-import { AuthButton } from 'src/components/auth/button/authButton'
 import { MainLayout } from 'src/components/layout/MainLayout'
+import { Account } from 'src/components/pages/mypage/Account/Account'
 
 export default function Mypage() {
-  return (
-    <div>Mypage</div>
-  )
+  return <Account />
 }
 
 Mypage.getLayout = function getLayout(page: ReactElement) {

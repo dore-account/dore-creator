@@ -25,7 +25,7 @@ export const InputInstagram = () => {
         </FormLabel>
         <Input
           id='instagram'
-          placeholder='ユーザーID'
+          placeholder='ユーザーIDを入力'
           {...register('instagram')}
         />
       </HStack>

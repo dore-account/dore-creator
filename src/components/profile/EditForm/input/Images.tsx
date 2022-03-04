@@ -1,4 +1,4 @@
-import { Grid, Box, CloseButton } from '@chakra-ui/react'
+import { Box, CloseButton, SimpleGrid } from '@chakra-ui/react'
 import React from 'react'
 import { ImageInput } from 'src/components/common/Image/ImageInput'
 import { useEditFormContext } from '../useEditFormContext'
@@ -8,10 +8,10 @@ export const InputImages = () => {
     useEditFormContext()
 
   return (
-    <Grid
-      templateColumns='repeat(3, auto)'
-      templateRows='repeat(3, auto)'
-      gap={3}
+    <SimpleGrid
+      columns={{ base: 3, lg: 4 }}
+      spacing={{ base: 4, lg: 8 }}
+      py={2}
     >
       {[...Array(6)]
         .map((_, i) => user.images[i] || { id: '', path: '' })
@@ -19,7 +19,7 @@ export const InputImages = () => {
           <Box key={id + i.toString()} position='relative'>
             <ImageInput
               id={`images_${id}`}
-              src={path}
+              src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${path}`}
               onChangeImage={handleImageInputChange}
             />
             {id !== '' && (
@@ -33,6 +33,6 @@ export const InputImages = () => {
             )}
           </Box>
         ))}
-    </Grid>
+    </SimpleGrid>
   )
 }

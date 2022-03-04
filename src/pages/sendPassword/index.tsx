@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react'
-import { ArrowBackIconButton } from 'src/components/common/Button/arrowBackIconButton'
+import { ArrowBackIconButton } from 'src/components/common/Button/ArrowBackIconButton'
 import { Layout } from 'src/components/layout/layout'
 import { SendPasswordReset } from 'src/components/pages/auth/sendPasswordReset/SendPasswordReset'
 
